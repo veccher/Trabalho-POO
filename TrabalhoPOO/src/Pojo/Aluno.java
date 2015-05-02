@@ -11,5 +11,7 @@ package Pojo;
  * @author Vitor
  */
 public class Aluno extends Pessoa {
-    
+    public Aluno (String nome,Integer cpf){
+        super (nome,cpf);
+    }
 }
