@@ -13,4 +13,10 @@ package Pojo;
 public class Professor extends Pessoa{
     private String departamento;
     private Integer numerodisciplinas;
+    
+    public Professor (String nome,Integer cpf,String departamento){
+        super (nome,cpf);
+        this.departamento=departamento;
+        this.numerodisciplinas=0;
+    }
 }
