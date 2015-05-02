@@ -10,6 +10,6 @@ package Pojo;
  *
  * @author Vitor
  */
-public class Aluno {
+public class Aluno extends Pessoa {
     
 }
