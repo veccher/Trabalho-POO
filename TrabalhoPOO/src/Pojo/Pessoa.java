@@ -12,4 +12,10 @@ package Pojo;
 public class Pessoa {
     private String nome;
     private Integer cpf;
+    
+    public Pessoa (String nome,Integer cpf){
+        this.nome=nome;
+        this.cpf=cpf;
+    }
+            
 }
