@@ -12,11 +12,14 @@ package Pojo;
  */
 public class Professor extends Pessoa{
     private String departamento;
-    private Integer numerodisciplinas;
+    private Integer numeroDisciplinas;
     
     public Professor (String nome,Integer cpf,String departamento){
         super (nome,cpf);
         this.departamento=departamento;
-        this.numerodisciplinas=0;
+        this.numeroDisciplinas=0;
+    }
+    public Integer getNumeroDisciplinas(){
+        return this.numeroDisciplinas;
     }
 }
