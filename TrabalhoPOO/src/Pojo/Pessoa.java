@@ -10,12 +10,22 @@ package Pojo;
  * @author veccher
  */
 public class Pessoa {
-    private String nome;
-    private Integer cpf;
+    String nome;
+    Integer cpf;
     
+    public Pessoa(){
+    }
+    
+
     public Pessoa (String nome,Integer cpf){
         this.nome=nome;
         this.cpf=cpf;
+    }
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public String getNome() {   
+            return (this.nome);
     }
             
 }
