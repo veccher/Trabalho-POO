@@ -22,9 +22,9 @@ public class AlunoDAO {
         Collections.sort(listaAluno);
     }
     
-    public boolean excluirAluno(String nomedel){
+    public boolean excluirAluno(String nomeDel){
         Aluno aux = new Aluno();
-        aux.setNome(nomedel);
+        aux.setNome(nomeDel);
         return this.listaAluno.remove(aux);
         
    }
