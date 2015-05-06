@@ -10,13 +10,16 @@ package Pojo;
  *
  * @author Vitor
  */
-public class Professor extends Pessoa{
+public class Professor extends Pessoa implements Comparable<Professor>{
     private String departamento; //departamento ao qual o prof pertence
     private Integer numeroDisciplinas;/*numero de disciplinas lecionadas 
     historicamente pelo professor*/
     
     /*construtor de professor, ao cadastrar um professor, o número de 
     disciplinas ja lecionadas por ele é definido como zero*/
+    public Professor(){
+        
+    }
     public Professor (String nome,Integer cpf,String departamento){
         super (nome,cpf);
         this.departamento=departamento;
@@ -30,4 +33,25 @@ public class Professor extends Pessoa{
     public void incrementaNumDisciplinas(){
         this.numeroDisciplinas++;
     }
+    
+    @Override
+    public boolean equals(Object obj){
+        
+        if(!(obj instanceof Professor)){
+            return false;
+        }
+        Professor professor = (Professor)obj;
+        return (this.nome.equals(professor.nome));
+    }
+    
+   
+    public int compareTo(Professor professor){
+        if(this.cpf.compareTo(professor.cpf)==0){
+            return 0;
+        }else if(this.cpf.compareTo(professor.cpf)<0){
+            return -1;
+        }else
+            return 1;           
+    }
+   
 }

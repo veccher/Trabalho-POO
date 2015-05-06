@@ -9,7 +9,7 @@ package Pojo;
  *
  * @author veccher
  */
-public class Turma {
+public class Turma implements Comparable<Turma> {
     private Integer ano;//ano que a disciplina foi/é lecionada
     private Integer periodo;//periodo que a disciplina foi/é lecionada
     private String local;//local (sala/predio/campus) das aulas
@@ -19,6 +19,9 @@ public class Turma {
     Disciplina disciplina;//disciplina que a turma pertence
     /*construtor de turma, recebe todos os dados necessarios, e incrementa
     o numero de turmas ja lecionadas por aquele professor*/
+    public Turma(){
+        
+    }
     public Turma (Integer ano,Integer periodo, String local, String horario, Integer numVagas, Professor professor, Disciplina disciplina){
         this.ano=ano;
         this.periodo=periodo;
@@ -34,4 +37,31 @@ public class Turma {
     //atenção, professor e disciplina podem ser null, discutir depois.
     //implementar turmaDAO
     
+    public void setProfessor(Professor professor){
+        this.professor=professor;
+    }
+    public void setDisciplina(Disciplina disciplina){
+        this.disciplina=disciplina;
+    }
+    
+    
+    @Override
+    public boolean equals(Object obj){
+        
+        if(!(obj instanceof Turma)){
+            return false;
+        }
+        Turma turma = (Turma)obj;
+        return (this.professor.equals(turma.professor));
+    }
+    
+   
+    public int compareTo(Turma turma){
+        if(this.disciplina.compareTo(turma.disciplina)==0){
+            return 0;
+        }else if(this.disciplina.compareTo(turma.disciplina)<0){
+            return -1;
+        }else
+            return 1;           
+    }
 }
