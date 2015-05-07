@@ -31,5 +31,17 @@ public class TurmaDAO {
         return this.listaTurma.remove(aux);
         
    }
+    public Turma buscarTurma(Disciplina disciplina,Integer idTurma){
+        Turma aux = new Turma(idTurma, disciplina);
+        
+        for(Turma turma : listaTurma){
+            if(turma.equals(aux)){
+                return turma;
+            }
+        }
+        
+        return null;
+        
+    }
     
 }

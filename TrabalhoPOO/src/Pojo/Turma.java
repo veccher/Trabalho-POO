@@ -23,8 +23,13 @@ public class Turma implements Comparable<Turma> {
     public Turma(){
         
     }
-    public Turma (Integer idTurma,Integer ano,Integer periodo, String local, String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+    public Turma(Integer idTurma, Disciplina disciplina){
         this.idTurma=idTurma;
+        this.disciplina=disciplina;
+    }
+    public Turma (Integer ano,Integer periodo, String local,
+                  String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+        this.idTurma=disciplina.getNumTurmas();
         this.ano=ano;
         this.periodo=periodo;
         this.local=local;
@@ -55,18 +60,11 @@ public class Turma implements Comparable<Turma> {
         }
         Turma turma = (Turma)obj;
         return (this.idTurma.equals(turma.idTurma) && this.disciplina.equals
-        (turma.disciplina))&& this.ano.equals(turma.ano)&&this.periodo.equals
-        (turma.periodo);
+               (turma.disciplina));
     }
     
-   
+    
     public int compareTo(Turma turma){
-        if (!(this.ano==turma.ano)){
-            return (this.ano.compareTo(turma.ano));
-        }
-        if (!(this.periodo==turma.periodo)){
-            return (this.periodo.compareTo(turma.periodo));
-        }
         if (!this.disciplina.equals(turma.disciplina)){
             return (this.disciplina.compareTo(turma.disciplina));
         }

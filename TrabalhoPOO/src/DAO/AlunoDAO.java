@@ -28,4 +28,15 @@ public class AlunoDAO {
         return this.listaAluno.remove(aux);
         
    }
+  
+    public Aluno buscarAluno(Integer cpf){
+        Aluno aux = new Aluno();
+        aux.setCpf(cpf);
+        for(Aluno aluno : listaAluno){
+            if(aluno.equals(aux)){
+                return aluno;
+            }
+        }
+        return null;
+    }
 }

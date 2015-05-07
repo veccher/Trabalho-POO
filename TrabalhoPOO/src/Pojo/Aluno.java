@@ -26,14 +26,14 @@ public class Aluno extends Pessoa implements Comparable <Aluno> {
             return false;
         }
         Aluno aluno = (Aluno)obj;
-        return (this.nome.equals(aluno.nome));
+        return (this.cpf.equals(aluno.cpf));
     }
     
    
     public int compareTo(Aluno aluno){
-        if(this.cpf.compareTo(aluno.cpf)==0){
+        if(this.nome.compareTo(aluno.nome)==0){
             return 0;
-        }else if(this.cpf.compareTo(aluno.cpf)<0){
+        }else if(this.nome.compareTo(aluno.nome)<0){
             return -1;
         }else
             return 1;           

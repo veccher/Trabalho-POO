@@ -27,5 +27,12 @@ public class Pessoa {
     public String getNome() {   
             return (this.nome);
     }
+    public void setCpf(Integer cpf){
+        this.cpf=cpf;
+    }
+    public Integer getCpf(){
+        return (this.cpf);
+        
+    }
             
 }

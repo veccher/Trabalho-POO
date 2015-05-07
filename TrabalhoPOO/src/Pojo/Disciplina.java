@@ -13,7 +13,7 @@ public class Disciplina implements Comparable<Disciplina> {
     private String nome;//nome da disciplina
     private String ementa;//ementa da disciplina
     private Integer chs;//carga horaria da disciplina
-    private static Integer numTurmas=0;//numero de turmas historicamente ja oferecidas
+    private static Integer numTurmas;//numero de turmas historicamente ja oferecidas
     
     //incrementa numero de turmas ja oferecidas
     public void incrementaNumTurmas(){
@@ -31,7 +31,7 @@ public class Disciplina implements Comparable<Disciplina> {
         this.nome=nome;
         this.ementa=ementa;
         this.chs=chs;
-        
+        this.numTurmas=0;
     }
     public void setNome(String nome){
         this.nome=nome;
