@@ -15,7 +15,8 @@ public class Atividade {
     private String nome;//nome da atividade ex.: prova1, trabalho de arvores
     private String tipo;//tipo da atividade ex.: prova, trabalho, seminario
     private Date data;//data da atividade
-    private Float valor;//valor da nota maxima na atividade
+    private Float valor;
+    private Turma turma;//valor da nota maxima na atividade
     //falta a lista de notas
     
     public Float getValor(){
@@ -23,12 +24,13 @@ public class Atividade {
     }
     /*o construtor simplesmente inicializa as variaveis, e faz o chec para
     garantir que o valor da atividade não seja negativo.*/
-    public Atividade (String nome,String tipo, Date data, Float valor){
+    public Atividade (String nome,String tipo, Date data, Float valor,Turma turma){
         this.nome=nome;
         this.tipo=tipo;
         this.data=data;
         if (valor>=0){
             this.valor=valor;
         }
+        this.turma=turma;
     }
 }

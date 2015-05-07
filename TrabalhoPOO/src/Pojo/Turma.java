@@ -10,6 +10,7 @@ package Pojo;
  * @author veccher
  */
 public class Turma implements Comparable<Turma> {
+    private Integer idTurma;//identificação da turma exemplo 1 (turma-1)
     private Integer ano;//ano que a disciplina foi/é lecionada
     private Integer periodo;//periodo que a disciplina foi/é lecionada
     private String local;//local (sala/predio/campus) das aulas
@@ -22,7 +23,8 @@ public class Turma implements Comparable<Turma> {
     public Turma(){
         
     }
-    public Turma (Integer ano,Integer periodo, String local, String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+    public Turma (Integer idTurma,Integer ano,Integer periodo, String local, String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+        this.idTurma=idTurma;
         this.ano=ano;
         this.periodo=periodo;
         this.local=local;
