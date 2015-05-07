@@ -9,7 +9,7 @@ package Pojo;
  *
  * @author veccher
  */
-public class Falta {
+public class Falta implements Comparable<Falta>{
     private Integer numFaltas;
     private Aluno aluno;
     private Turma turma;
@@ -33,4 +33,13 @@ public class Falta {
         this.aluno=aluno;
         this.turma=turma;
     }
+    @Override
+    //compareTo vai ser usado pra ordenação e vai ser baseado apenas em aluno
+    public int compareTo(Falta falta){
+        return this.aluno.compareTo (falta.aluno);
+    }
+    public boolean equals (Falta falta){
+        return (this.aluno.equals(falta.aluno) && this.turma.equals(falta.turma));
+    }
+    
 }
