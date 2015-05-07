@@ -41,14 +41,14 @@ public class Professor extends Pessoa implements Comparable<Professor>{
             return false;
         }
         Professor professor = (Professor)obj;
-        return (this.nome.equals(professor.nome));
+        return (this.cpf.equals(professor.cpf));
     }
     
    
     public int compareTo(Professor professor){
-        if(this.cpf.compareTo(professor.cpf)==0){
+        if(this.nome.compareTo(professor.nome)==0){
             return 0;
-        }else if(this.cpf.compareTo(professor.cpf)<0){
+        }else if(this.nome.compareTo(professor.nome)<0){
             return -1;
         }else
             return 1;           
