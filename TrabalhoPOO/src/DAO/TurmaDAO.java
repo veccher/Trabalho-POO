@@ -24,10 +24,8 @@ public class TurmaDAO {
         Collections.sort(listaTurma);
     }
     
-    public boolean excluirTurma(Professor professor, Disciplina disciplina){
-        Turma aux = new Turma();
-        aux.setProfessor(professor);
-        aux.setDisciplina(disciplina);
+    public boolean excluirTurma(Disciplina disciplina,Integer idTurma){
+        Turma aux = new Turma(idTurma,disciplina);
         return this.listaTurma.remove(aux);
         
    }
