@@ -22,7 +22,7 @@ public class Nota {
         return this.nota;
     }
     public void setNota(Float novaNota){
-        if (novaNota>=0 && novaNota<=atividade.getValor()){
+        if (novaNota>=0 && novaNota<=10){
             this.nota=novaNota;
         }
     }
