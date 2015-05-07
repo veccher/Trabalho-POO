@@ -22,14 +22,14 @@ public class AlunoDAO {
         Collections.sort(listaAluno);
     }
     
-    public boolean excluirAluno(String nomeDel){
+    public boolean excluiAluno(String nomeDel){
         Aluno aux = new Aluno();
         aux.setNome(nomeDel);
         return this.listaAluno.remove(aux);
         
    }
   
-    public Aluno buscarAluno(Integer cpf){
+    public Aluno buscaAluno(Integer cpf){
         Aluno aux = new Aluno();
         aux.setCpf(cpf);
         for(Aluno aluno : listaAluno){

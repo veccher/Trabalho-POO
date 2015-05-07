@@ -24,12 +24,12 @@ public class TurmaDAO {
         Collections.sort(listaTurma);
     }
     
-    public boolean excluirTurma(Disciplina disciplina,Integer idTurma){
+    public boolean excluiTurma(Disciplina disciplina,Integer idTurma){
         Turma aux = new Turma(idTurma,disciplina);
         return this.listaTurma.remove(aux);
         
    }
-    public Turma buscarTurma(Disciplina disciplina,Integer idTurma){
+    public Turma buscaTurma(Disciplina disciplina,Integer idTurma){
         Turma aux = new Turma(idTurma, disciplina);
         
         for(Turma turma : listaTurma){

@@ -6,6 +6,8 @@
 
 package DAO;
 
+import Pojo.Aluno;
+import Pojo.Atividade;
 import Pojo.Nota;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,11 +24,24 @@ public class NotaDAO {
         Collections.sort(listaNota);
     }
     
-    public boolean excluirNota(String nomeDel){
-        Nota aux = new Nota();
+    public boolean excluiNota(Aluno aluno, Atividade atividade){
+        
+        Nota aux = new Nota(new Float(0),aluno,atividade);
         return this.listaNota.remove(aux);
         
    }
+    
+    public Nota buscaNota(Aluno aluno, Atividade atividade){
+        Nota aux = new Nota(new Float(0),aluno,atividade);
+        
+        for(Nota nota : listaNota){
+            if(nota.equals(aux)){
+                return nota;
+            }
+            
+        }
+        return null;
+    }
     
     
 }

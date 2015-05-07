@@ -22,13 +22,13 @@ public class AtividadeDAO {
         listaAtividade.add(atividade);
         Collections.sort(listaAtividade);
     }
-    public boolean excluirAtividade (String nome,Turma turma){
+    public boolean excluiAtividade (String nome,Turma turma){
         {
         Atividade aux = new Atividade(nome,turma);
         return this.listaAtividade.remove(aux);
         }
     }
-    public Atividade buscarAtividade(String nome,Turma turma){
+    public Atividade buscaAtividade(String nome,Turma turma){
         Atividade aux = new Atividade(nome,turma);
         
         for(Atividade atividade : listaAtividade){

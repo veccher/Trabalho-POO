@@ -15,7 +15,16 @@ public class Nota implements Comparable<Nota>{
     private Aluno aluno;
     private Atividade atividade;
     
-    /*o objetivo da classe é representar a nota de um aluno em uma determinada
+   
+    public Nota(){
+        
+    }
+    public Nota (Float nota,Aluno aluno,Atividade atividade){
+        this.setNota(nota);
+        this.aluno=aluno;
+        this.atividade=atividade;
+    }
+     /*o objetivo da classe é representar a nota de um aluno em uma determinada
     atividade, um aluno pode ver sua nota usando "getNota" e um professor pode
     alterar a nota do aluno após uma revisão com "setNota"*/
     public Float getNota(){
@@ -25,14 +34,6 @@ public class Nota implements Comparable<Nota>{
         if (novaNota>=0 && novaNota<=10){
             this.nota=novaNota;
         }
-    }
-    public Nota(){
-        
-    }
-    public Nota (Float nota,Aluno aluno,Atividade atividade){
-        this.setNota(nota);
-        this.aluno=aluno;
-        this.atividade=atividade;
     }
     
     @Override

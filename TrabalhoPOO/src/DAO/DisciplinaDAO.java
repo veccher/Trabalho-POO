@@ -20,13 +20,13 @@ public class DisciplinaDAO {
         Collections.sort(listaDisciplina);
     }
     
-    public boolean excluirDisciplina(String nomeDel){
+    public boolean excluiDisciplina(String nomeDel){
         Disciplina aux = new Disciplina();
         aux.setNome(nomeDel);
         return this.listaDisciplina.remove(aux);
         
    }
-    public Disciplina buscarDisciplina(String nome){
+    public Disciplina buscaDisciplina(String nome){
         Disciplina aux = new Disciplina();
         aux.setNome(nome);
         for(Disciplina disciplina : listaDisciplina){
