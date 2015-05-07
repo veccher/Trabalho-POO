@@ -33,6 +33,10 @@ public class Atividade implements Comparable<Atividade>{
         }
         this.turma=turma;
     }
+    public Atividade (String nome, Turma turma){
+        this.nome=nome;
+        this.turma=turma;
+    }
     /*a comparação entre 2 classes é baseada primariamente na turmae no nome 
     para criterio de desempate*/
     
