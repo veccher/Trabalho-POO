@@ -28,5 +28,15 @@ public class ProfessorDAO {
         return this.listaProfessor.remove(aux);
         
    }
+    public Professor buscarProfessor(Integer cpf){
+        Professor aux = new Professor();
+        aux.setCpf(cpf);
+        for(Professor professor : listaProfessor){
+            if(professor.equals(aux)){
+                return professor;
+            }
+        }
+        return null;
+    }
     
 }
