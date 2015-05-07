@@ -10,7 +10,7 @@ package Pojo;
  * @author veccher
  */
 
-public class Nota {
+public class Nota implements Comparable<Nota>{
     private Float nota;
     private Aluno aluno;
     private Atividade atividade;
@@ -26,9 +26,33 @@ public class Nota {
             this.nota=novaNota;
         }
     }
+    public Nota(){
+        
+    }
     public Nota (Float nota,Aluno aluno,Atividade atividade){
         this.setNota(nota);
         this.aluno=aluno;
         this.atividade=atividade;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        
+        if(!(obj instanceof Nota)){
+            return false;
+        }
+        Nota nota = (Nota)obj;
+        return (this.aluno.equals(nota.aluno)&& 
+                this.atividade.equals(nota.atividade));
+    }
+    
+    @Override
+    public int compareTo(Nota nota){
+        if(this.aluno.getNome().compareTo(nota.aluno.getNome())==0){
+            return 0;
+        }else if(this.aluno.getNome().compareTo(nota.aluno.nome)<0){
+            return -1;
+        }else
+            return 1;           
     }
 }
