@@ -26,5 +26,15 @@ public class DisciplinaDAO {
         return this.listaDisciplina.remove(aux);
         
    }
+    public Disciplina buscarDisciplina(String nome){
+        Disciplina aux = new Disciplina();
+        aux.setNome(nome);
+        for(Disciplina disciplina : listaDisciplina){
+            if(disciplina.equals(aux)){
+                return disciplina;
+            }
+        }
+        return null;
+    }
     
 }
