@@ -6,6 +6,8 @@
 package Pojo;
 
 import DAO.AlunoDAO;
+import DAO.AtividadeDAO;
+import DAO.FaltaDAO;
 
 /**
  *
@@ -21,6 +23,9 @@ public class Turma implements Comparable<Turma> {
     private Professor professor;//professor responsavel por lecionar a disciplina
     private Disciplina disciplina;//disciplina que a turma pertence
     private AlunoDAO listaDeMatricula;//lista de alunos na turma
+    private AtividadeDAO listaAtividades;//lista de todas as atividades
+    private FaltaDAO listaDeFaltas;//lista de faltas de cada aluno
+    
     /*construtor de turma, recebe todos os dados necessarios, e incrementa
     o numero de turmas ja lecionadas por aquele professor e n de turmas ja
     criadas*/
@@ -54,18 +59,7 @@ public class Turma implements Comparable<Turma> {
         return (this.idTurma.equals(turma.idTurma) && this.disciplina.equals
                (turma.disciplina));
     }
-    //adiciona/matricula um aluno na turma
-    public boolean matriculaAluno (AlunoDAO alunoDAO,Integer cpf){
-        Aluno aluno=alunoDAO.buscaAluno(cpf);
-        if (aluno!=null){
-            this.listaDeMatricula.adicionar(aluno);
-            return true;
-        }
-        return false;
-    }
-    public void desmatriculaAluno (Integer cpf){
-        this.listaDeMatricula.excluiAluno(cpf);
-    }
+    
     
     public int compareTo(Turma turma){
         if (!this.disciplina.equals(turma.disciplina)){
