@@ -36,7 +36,7 @@ public class Menu {
     }
     public static void main(String[] args) throws FileNotFoundException, ParseException  {
         MenuAdmin menuAdmin = new MenuAdmin();
-        MenuProfessor meuProfessor = new MenuProfessor();
+        MenuProfessor menuProfessor = new MenuProfessor();
         MenuAluno menuAluno= new MenuAluno();
         ProfessorDAO professorDAO= new ProfessorDAO();
         AlunoDAO alunoDAO = new AlunoDAO();
@@ -58,13 +58,13 @@ public class Menu {
             opcao = scanner.nextByte();
                 switch(opcao){
                 case 1:
-                    menuAdmin.menuOpcoes();
+                    menuAdmin.menuOpcao( professorDAO, alunoDAO,turmaDAO, disciplinaDAO);
                     break;
                 case 2:
-                    menuProfessor.menuOpcoes();
+                    menuProfessor.menuOpcao();
                     break;
                 case 3:
-                    menuAluno.menuOpcoes();
+                    menuAluno.menuOpcao();
                     break;
                 case 4:
                    //TODO listagem do numero de turmas ja oferecidas de uma disciplina

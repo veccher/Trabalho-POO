@@ -11,5 +11,8 @@ package View;
  * @author Vitor
  */
 public class MenuAluno {
+     public void menuOpcao(){
+         
+     }
     
 }

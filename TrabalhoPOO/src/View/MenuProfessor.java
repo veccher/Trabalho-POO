@@ -11,5 +11,7 @@ package View;
  * @author Vitor
  */
 public class MenuProfessor {
-    
+     public void menuOpcao(){
+         
+     }
 }
