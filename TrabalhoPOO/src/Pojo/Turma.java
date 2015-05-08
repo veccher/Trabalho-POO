@@ -5,6 +5,8 @@
  */
 package Pojo;
 
+import DAO.AlunoDAO;
+
 /**
  *
  * @author veccher
@@ -16,10 +18,12 @@ public class Turma implements Comparable<Turma> {
     private String local;//local (sala/predio/campus) das aulas
     private String horario;//horario que ocorre a aula
     private Integer numVagas;//numero de vagas disponíveis para matricula
-    Professor professor;//professor responsavel por lecionar a disciplina
-    Disciplina disciplina;//disciplina que a turma pertence
+    private Professor professor;//professor responsavel por lecionar a disciplina
+    private Disciplina disciplina;//disciplina que a turma pertence
+    private AlunoDAO listaDeMatricula;//lista de alunos na turma
     /*construtor de turma, recebe todos os dados necessarios, e incrementa
-    o numero de turmas ja lecionadas por aquele professor*/
+    o numero de turmas ja lecionadas por aquele professor e n de turmas ja
+    criadas*/
     public Turma(){
         
     }
@@ -40,18 +44,6 @@ public class Turma implements Comparable<Turma> {
         professor.incrementaNumDisciplinas();
         disciplina.incrementaNumTurmas();
     }
-    //TODO
-    //atenção, professor e disciplina podem ser null, discutir depois.
-    //implementar turmaDAO
-    
-    public void setProfessor(Professor professor){
-        this.professor=professor;
-    }
-    public void setDisciplina(Disciplina disciplina){
-        this.disciplina=disciplina;
-    }
-    
-    
     @Override
     public boolean equals(Object obj){
         
@@ -62,7 +54,18 @@ public class Turma implements Comparable<Turma> {
         return (this.idTurma.equals(turma.idTurma) && this.disciplina.equals
                (turma.disciplina));
     }
-    
+    //adiciona/matricula um aluno na turma
+    public boolean matriculaAluno (AlunoDAO alunoDAO,Integer cpf){
+        Aluno aluno=alunoDAO.buscaAluno(cpf);
+        if (aluno!=null){
+            this.listaDeMatricula.adicionar(aluno);
+            return true;
+        }
+        return false;
+    }
+    public void desmatriculaAluno (Integer cpf){
+        this.listaDeMatricula.excluiAluno(cpf);
+    }
     
     public int compareTo(Turma turma){
         if (!this.disciplina.equals(turma.disciplina)){
