@@ -22,9 +22,8 @@ public class ProfessorDAO {
         Collections.sort(listaProfessor);
     }
     
-    public boolean excluirProfessor(String nomeDel){
-        Professor aux = new Professor();
-        aux.setNome(nomeDel);
+    public boolean excluirProfessor(Integer cpf){
+        Professor aux = this.buscarProfessor(cpf);
         return this.listaProfessor.remove(aux);
         
    }

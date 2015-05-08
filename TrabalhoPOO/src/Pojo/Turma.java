@@ -5,6 +5,10 @@
  */
 package Pojo;
 
+import DAO.AlunoDAO;
+import DAO.AtividadeDAO;
+import DAO.FaltaDAO;
+
 /**
  *
  * @author veccher
@@ -16,10 +20,15 @@ public class Turma implements Comparable<Turma> {
     private String local;//local (sala/predio/campus) das aulas
     private String horario;//horario que ocorre a aula
     private Integer numVagas;//numero de vagas disponíveis para matricula
-    Professor professor;//professor responsavel por lecionar a disciplina
-    Disciplina disciplina;//disciplina que a turma pertence
+    private Professor professor;//professor responsavel por lecionar a disciplina
+    private Disciplina disciplina;//disciplina que a turma pertence
+    private AlunoDAO listaDeMatricula;//lista de alunos na turma
+    private AtividadeDAO listaAtividades;//lista de todas as atividades
+    private FaltaDAO listaDeFaltas;//lista de faltas de cada aluno
+    
     /*construtor de turma, recebe todos os dados necessarios, e incrementa
-    o numero de turmas ja lecionadas por aquele professor*/
+    o numero de turmas ja lecionadas por aquele professor e n de turmas ja
+    criadas*/
     public Turma(){
         
     }
@@ -40,18 +49,6 @@ public class Turma implements Comparable<Turma> {
         professor.incrementaNumDisciplinas();
         disciplina.incrementaNumTurmas();
     }
-    //TODO
-    //atenção, professor e disciplina podem ser null, discutir depois.
-    //implementar turmaDAO
-    
-    public void setProfessor(Professor professor){
-        this.professor=professor;
-    }
-    public void setDisciplina(Disciplina disciplina){
-        this.disciplina=disciplina;
-    }
-    
-    
     @Override
     public boolean equals(Object obj){
         

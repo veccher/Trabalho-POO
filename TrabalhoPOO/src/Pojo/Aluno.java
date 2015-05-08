@@ -20,6 +20,7 @@ public class Aluno extends Pessoa implements Comparable <Aluno> {
     }
   
     @Override
+    //para comparação será usado cpf, onde cpfs iguais significam alunos iguais
     public boolean equals(Object obj){
         
         if(!(obj instanceof Aluno)){
@@ -29,7 +30,7 @@ public class Aluno extends Pessoa implements Comparable <Aluno> {
         return (this.cpf.equals(aluno.cpf));
     }
     
-   
+    //compara para ordenação baseado em ordem alfabetica
     public int compareTo(Aluno aluno){
         if(this.nome.compareTo(aluno.nome)==0){
             return 0;
