@@ -22,7 +22,7 @@ import java.util.Scanner;
  * @author Vitor
  */
 public class MenuAdmin {
-    public void CadastroProfessor(ProfessorDAO professorDAO, String nome,
+    public void cadastroProfessor(ProfessorDAO professorDAO, String nome,
                                        Integer cpf, String departamento){
         if("".equals(nome)||"".equals(departamento)||"".equals(cpf)){
              
@@ -33,7 +33,7 @@ public class MenuAdmin {
          }  
         
     }
-    public void CadastroAluno(AlunoDAO alunoDAO, String nome, Integer cpf){
+    public void cadastroAluno(AlunoDAO alunoDAO, String nome, Integer cpf){
         
         if("".equals(nome)||"".equals(cpf)){
              
@@ -45,8 +45,26 @@ public class MenuAdmin {
          
         
     }
-    public void  CadastroTurma(TurmaDAO turmaDAO, Integer ano,Integer periodo, String local,
-                  String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+    public static void matriculaAluno (AlunoDAO alunoDAO,Turma turma){
+        Integer cpf;
+        do {
+            System.out.println("Digite o cpf do aluno a ser matriculado na turma");
+            System.out.println("Para terminar o cadastro digite um numero negativo");
+            Scanner scanner=new Scanner(System.in);
+            cpf=scanner.nextInt();
+            if (cpf<0)
+                break;
+            Aluno aluno=alunoDAO.buscaAluno(cpf);
+            if (aluno==null){
+                System.out.println("aluno não encontrado");
+            }
+            turma.matriculaAluno(aluno);
+        }while(cpf>=0);
+        
+    }
+    public void  cadastroTurma(TurmaDAO turmaDAO, Integer ano,Integer periodo, String local,
+                  String horario, Integer numVagas, Professor professor, Disciplina disciplina,
+                  AlunoDAO alunoDAO){
          
         if("".equals(ano)||"".equals(periodo)||"".equals(local)||"".equals(horario)
                 ||"".equals(numVagas)){
@@ -55,12 +73,13 @@ public class MenuAdmin {
             Turma novo = new Turma(ano, periodo, local, horario, numVagas,
                                    professor, disciplina);
             turmaDAO.adicionar(novo);
+            matriculaAluno(alunoDAO,novo);
                 
          }  
          
         
     }
-    public void CadastroDisciplina(DisciplinaDAO disciplinaDAO, String nome,
+    public void cadastroDisciplina(DisciplinaDAO disciplinaDAO, String nome,
                                          String ementa, Integer chs){
         
         if("".equals(nome)||"".equals(ementa)||"".equals(chs)){
@@ -111,7 +130,7 @@ public class MenuAdmin {
                     System.out.println("Entre com o departamento do Professor:");
                     departamento = scanner.nextLine();
                     
-                    this.CadastroProfessor(professorDAO, nome, cpf, departamento);
+                    this.cadastroProfessor(professorDAO, nome, cpf, departamento);
                     
                     break;
                 case 2:
@@ -122,7 +141,7 @@ public class MenuAdmin {
                     System.out.println("Entre com o cpf do Aluno:");
                     cpf = scanner.nextInt();
                     
-                    this.CadastroAluno(alunoDAO, nome, cpf);
+                    this.cadastroAluno(alunoDAO, nome, cpf);
                    
                  
                     break;
@@ -160,8 +179,8 @@ public class MenuAdmin {
                     System.out.println("Entre com o numero de vagas da Turma:");
                     numVagas = scanner.nextInt();
                     
-                    this.CadastroTurma(turmaDAO, ano, periodo, local, horario,
-                            numVagas, professor, disciplina);
+                    this.cadastroTurma(turmaDAO, ano, periodo, local, horario,
+                            numVagas, professor, disciplina,alunoDAO);
                  
                     break;
                 case 4:
@@ -177,7 +196,7 @@ public class MenuAdmin {
                     System.out.println("Entre com a carga horaria da Disciplina:");
                     chs = scanner.nextInt();
                     
-                    this.CadastroDisciplina(disciplinaDAO, nome, ementa, chs);
+                    this.cadastroDisciplina(disciplinaDAO, nome, ementa, chs);
                     
                     
                     break;

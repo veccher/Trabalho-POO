@@ -60,7 +60,13 @@ public class Turma implements Comparable<Turma> {
                (turma.disciplina));
     }
     
-    
+    public boolean matriculaAluno (Aluno aluno){
+        if (aluno==null){
+            return false;
+        }
+        this.listaDeMatricula.adicionar(aluno);
+        return true;
+    }
     public int compareTo(Turma turma){
         if (!this.disciplina.equals(turma.disciplina)){
             return (this.disciplina.compareTo(turma.disciplina));
