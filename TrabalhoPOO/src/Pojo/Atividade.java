@@ -18,7 +18,7 @@ public class Atividade implements Comparable<Atividade>{
     private Date data;//data da atividade
     private Float peso;//coeficiente que indica a importancia da nota
     private Turma turma;//valor da nota maxima na atividade
-    private NotaDAO lisNotas;//lista de notas de cada aluno na atividade 
+    private NotaDAO lisNotas=new NotaDAO();//lista de notas de cada aluno na atividade 
     
     public Float getPeso(){
         return this.peso;

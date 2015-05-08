@@ -23,8 +23,8 @@ public class Turma implements Comparable<Turma> {
     private Professor professor;//professor responsavel por lecionar a disciplina
     private Disciplina disciplina;//disciplina que a turma pertence
     private AlunoDAO listaDeMatricula = new AlunoDAO();//lista de alunos na turma
-    private AtividadeDAO listaAtividades;//lista de todas as atividades
-    private FaltaDAO listaDeFaltas;//lista de faltas de cada aluno
+    private AtividadeDAO listaAtividades=new AtividadeDAO();//lista de todas as atividades
+    private FaltaDAO listaDeFaltas=new FaltaDAO();//lista de faltas de cada aluno
     
     /*construtor de turma, recebe todos os dados necessarios, e incrementa
     o numero de turmas ja lecionadas por aquele professor e n de turmas ja

@@ -16,7 +16,6 @@ public class Disciplina implements Comparable<Disciplina> {
     private String ementa;//ementa da disciplina
     private Integer chs;//carga horaria da disciplina
     private static Integer numTurmas;//numero de turmas historicamente ja oferecidas
-    private TurmaDAO listaTurmas;//lista de turmas disponiveis para matricula;
     
     //incrementa numero de turmas ja oferecidas
     public void incrementaNumTurmas(){
