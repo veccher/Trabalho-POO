@@ -16,7 +16,6 @@ import Pojo.Professor;
 import Pojo.Turma;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 /**
  *
  * @author Vitor
@@ -33,15 +32,11 @@ public class MenuAdmin {
          }  
         
     }
-    public void cadastroAluno(AlunoDAO alunoDAO, String nome, Integer cpf){
+    public void cadastroAluno(AlunoDAO alunoDAO, Aluno novo){
         
-        if("".equals(nome)||"".equals(cpf)){
-             
-         }else{
-            Aluno novo = new Aluno(nome, cpf);
             alunoDAO.adicionar(novo);
              
-         }  
+         
          
         
     }
@@ -54,11 +49,14 @@ public class MenuAdmin {
             cpf=scanner.nextInt();
             if (cpf<0)
                 break;
+            System.out.println("aq");
             Aluno aluno=alunoDAO.buscaAluno(cpf);
             if (aluno==null){
+                System.out.println("aq2");
                 System.out.println("aluno não encontrado");
+            }else{System.out.println("aq3");
+                turma.matriculaAluno(aluno);
             }
-            turma.matriculaAluno(aluno);
         }while(cpf>=0);
         
     }
@@ -111,21 +109,24 @@ public class MenuAdmin {
     public void menuOpcao(ProfessorDAO professorDAO, AlunoDAO alunoDAO, 
                           TurmaDAO turmaDAO, DisciplinaDAO disciplinaDAO){
         Scanner scanner = new Scanner(System.in);
-        byte opcao,i;
+        Scanner scanner2 = new Scanner(System.in);
+        int opcao;
 
         do{
             imprimeMenu();
-            opcao = Byte.parseByte(scanner.nextLine());
+            Aluno novo = new Aluno();
+            opcao = scanner2.nextInt();
             String nome=null,departamento =null, local = null,horario= null, ementa =null; 
             Integer cpf=null, ano=null, periodo=null, numVagas=null, chs=null ;
             switch(opcao){
                 case 1:
+                    
                     System.out.println();
                     System.out.println("Entre com o nome do Professor: ");
                     nome = scanner.nextLine();
                     System.out.println();
                     System.out.println("Entre com o cpf do Professor:");
-                    cpf = scanner.nextInt();
+                    cpf = Integer.parseInt(scanner.nextLine());
                     System.out.println();
                     System.out.println("Entre com o departamento do Professor:");
                     departamento = scanner.nextLine();
@@ -134,14 +135,14 @@ public class MenuAdmin {
                     
                     break;
                 case 2:
+                    
                     System.out.println();
                     System.out.println("Entre com o nome do Aluno: ");
-                    nome = scanner.nextLine();
+                    novo.setNome(scanner.nextLine());
                     System.out.println();
                     System.out.println("Entre com o cpf do Aluno:");
-                    cpf = scanner.nextInt();
-                    
-                    this.cadastroAluno(alunoDAO, nome, cpf);
+                    novo.setCpf(Integer.parseInt(scanner.nextLine()));
+                    this.cadastroAluno(alunoDAO,novo);
                    
                  
                     break;
@@ -151,7 +152,7 @@ public class MenuAdmin {
                     System.out.println();
                     System.out.println("Entre com o cpf do Professor que"
                             + " lecionara para turma: ");
-                    cpf = scanner.nextInt();
+                    cpf = Integer.parseInt(scanner.nextLine());
                     professor = professorDAO.buscarProfessor(cpf);
                    
                     System.out.println();
@@ -161,11 +162,11 @@ public class MenuAdmin {
                     
                     System.out.println();
                     System.out.println("Entre com o ano da Turma:");
-                    ano = scanner.nextInt();
+                    ano = Integer.parseInt(scanner.nextLine());
                     
                     System.out.println();
                     System.out.println("Entre com o periodo da Turma:");
-                    periodo = scanner.nextInt();
+                    periodo = Integer.parseInt(scanner.nextLine());
                     
                     System.out.println();
                     System.out.println("Entre com o local da Turma:");
@@ -177,7 +178,7 @@ public class MenuAdmin {
                     
                     System.out.println();
                     System.out.println("Entre com o numero de vagas da Turma:");
-                    numVagas = scanner.nextInt();
+                    numVagas = Integer.parseInt(scanner.nextLine());
                     
                     this.cadastroTurma(turmaDAO, ano, periodo, local, horario,
                             numVagas, professor, disciplina,alunoDAO);
@@ -194,7 +195,7 @@ public class MenuAdmin {
                     
                     System.out.println();
                     System.out.println("Entre com a carga horaria da Disciplina:");
-                    chs = scanner.nextInt();
+                    chs = Integer.parseInt(scanner.nextLine());
                     
                     this.cadastroDisciplina(disciplinaDAO, nome, ementa, chs);
                     

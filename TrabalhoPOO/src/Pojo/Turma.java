@@ -22,7 +22,7 @@ public class Turma implements Comparable<Turma> {
     private Integer numVagas;//numero de vagas disponíveis para matricula
     private Professor professor;//professor responsavel por lecionar a disciplina
     private Disciplina disciplina;//disciplina que a turma pertence
-    private AlunoDAO listaDeMatricula;//lista de alunos na turma
+    private AlunoDAO listaDeMatricula = new AlunoDAO();//lista de alunos na turma
     private AtividadeDAO listaAtividades;//lista de todas as atividades
     private FaltaDAO listaDeFaltas;//lista de faltas de cada aluno
     

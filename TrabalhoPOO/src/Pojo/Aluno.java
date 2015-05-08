@@ -27,14 +27,14 @@ public class Aluno extends Pessoa implements Comparable <Aluno> {
             return false;
         }
         Aluno aluno = (Aluno)obj;
-        return (this.cpf.equals(aluno.cpf));
+        return (this.getCpf().equals(aluno.getCpf()));
     }
     
     //compara para ordenação baseado em ordem alfabetica
     public int compareTo(Aluno aluno){
-        if(this.nome.compareTo(aluno.nome)==0){
+        if(this.getNome().compareTo(aluno.getNome())==0){
             return 0;
-        }else if(this.nome.compareTo(aluno.nome)<0){
+        }else if(this.getNome().compareTo(aluno.getNome())<0){
             return -1;
         }else
             return 1;           

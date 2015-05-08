@@ -10,8 +10,8 @@ package Pojo;
  * @author veccher
  */
 public class Pessoa {
-    String nome;
-    Integer cpf;
+    private String nome;
+    private Integer cpf;
     
     public Pessoa(){
     }

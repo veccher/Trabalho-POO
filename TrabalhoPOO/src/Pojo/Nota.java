@@ -51,7 +51,7 @@ public class Nota implements Comparable<Nota>{
     public int compareTo(Nota nota){
         if(this.aluno.getNome().compareTo(nota.aluno.getNome())==0){
             return 0;
-        }else if(this.aluno.getNome().compareTo(nota.aluno.nome)<0){
+        }else if(this.aluno.getNome().compareTo(nota.aluno.getNome())<0){
             return -1;
         }else
             return 1;           
