@@ -58,10 +58,10 @@ public class Menu {
             opcao = scanner.nextByte();
                 switch(opcao){
                 case 1:
-                    menuAdmin.menuOpcao( professorDAO, alunoDAO,turmaDAO, disciplinaDAO);
+                    menuAdmin.menuOpcao(professorDAO, alunoDAO,turmaDAO, disciplinaDAO);
                     break;
                 case 2:
-                    menuProfessor.menuOpcao();
+                    menuProfessor.menuOpcao(professorDAO);
                     break;
                 case 3:
                     menuAluno.menuOpcao();

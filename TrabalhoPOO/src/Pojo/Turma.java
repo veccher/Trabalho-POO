@@ -48,6 +48,13 @@ public class Turma implements Comparable<Turma> {
         this.disciplina=disciplina;
         professor.incrementaNumDisciplinas();
         disciplina.incrementaNumTurmas();
+        professor.tutoraTurma(this);
+    }
+    public Integer getAno(){
+        return this.ano;
+    }
+    public AtividadeDAO getListaAtividades(){
+        return this.listaAtividades;
     }
     @Override
     public boolean equals(Object obj){

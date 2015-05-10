@@ -49,12 +49,10 @@ public class MenuAdmin {
             cpf=scanner.nextInt();
             if (cpf<0)
                 break;
-            System.out.println("aq");
             Aluno aluno=alunoDAO.buscaAluno(cpf);
             if (aluno==null){
-                System.out.println("aq2");
                 System.out.println("aluno não encontrado");
-            }else{System.out.println("aq3");
+            }else{
                 turma.matriculaAluno(aluno);
             }
         }while(cpf>=0);

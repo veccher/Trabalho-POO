@@ -6,12 +6,15 @@
 
 package Pojo;
 
+import DAO.TurmaDAO;
+
 /**
  *
  * @author Vitor
  */
 public class Professor extends Pessoa implements Comparable<Professor>{
     private String departamento; //departamento ao qual o prof pertence
+    private TurmaDAO turmasTutoradas;//turmas que o prof leciona
     private Integer numeroDisciplinas;/*numero de disciplinas lecionadas 
     historicamente pelo professor*/
     
@@ -32,6 +35,12 @@ public class Professor extends Pessoa implements Comparable<Professor>{
     nova turma*/
     public void incrementaNumDisciplinas(){
         this.numeroDisciplinas++;
+    }
+    public TurmaDAO getTurmasTutoradas(){
+        return this.turmasTutoradas;
+    }
+    public void tutoraTurma (Turma turma){
+        this.turmasTutoradas.adicionar(turma);
     }
     
     @Override
