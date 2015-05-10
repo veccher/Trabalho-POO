@@ -74,6 +74,7 @@ public class MenuProfessor {
          turma.getListaAtividades().adicionar(atividade);
          return true;
      }
+     
      public void menuOpcao(ProfessorDAO professorDAO){
          
          

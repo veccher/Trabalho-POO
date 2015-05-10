@@ -41,5 +41,9 @@ public class TurmaDAO {
         return null;
         
     }
-    
+    public ArrayList<Turma> getListaTurma(){
+        return listaTurma;
+   }
+
+   
 }

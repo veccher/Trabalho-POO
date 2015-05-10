@@ -42,6 +42,10 @@ public class NotaDAO {
         }
         return null;
     }
-    
+    public ArrayList<Nota> getListaNota(){
+        return this.listaNota;
+    }
+
+
     
 }

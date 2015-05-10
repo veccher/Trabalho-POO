@@ -35,6 +35,9 @@ public class Disciplina implements Comparable<Disciplina> {
         this.chs=chs;
         this.numTurmas=0;
     }
+    public Integer getChs(){
+        return this.chs;
+    }
     public void setNome(String nome){
         this.nome=nome;
     }

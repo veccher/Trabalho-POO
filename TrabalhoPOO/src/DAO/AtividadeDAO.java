@@ -40,4 +40,9 @@ public class AtividadeDAO {
         return null;
         
     }
+    public ArrayList<Atividade> getListaAtividade(){
+        return this.listaAtividade;
+    }
+
+    
 }

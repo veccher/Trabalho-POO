@@ -53,6 +53,15 @@ public class Turma implements Comparable<Turma> {
     public Integer getAno(){
         return this.ano;
     }
+    public Disciplina getDisciplina(){
+        return this.disciplina;
+    }
+    public AlunoDAO getListaAlunos(){
+        return this.listaDeMatricula;
+    }
+    public FaltaDAO getListaFaltas(){
+        return this.listaDeFaltas;
+    }
     public AtividadeDAO getListaAtividades(){
         return this.listaAtividades;
     }
@@ -80,4 +89,8 @@ public class Turma implements Comparable<Turma> {
         }
         return (this.idTurma.compareTo(this.idTurma));    
     }
+
+    /*public Object getDisciplina() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
 }

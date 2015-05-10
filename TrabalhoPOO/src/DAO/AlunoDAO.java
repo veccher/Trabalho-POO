@@ -39,4 +39,7 @@ public class AlunoDAO {
         }
         return null;
     }
+    public ArrayList<Aluno> getListaAluno(){
+        return this.listaAluno;
+    }
 }

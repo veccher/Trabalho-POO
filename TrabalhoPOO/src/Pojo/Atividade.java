@@ -18,7 +18,7 @@ public class Atividade implements Comparable<Atividade>{
     private Date data;//data da atividade
     private Float peso;//coeficiente que indica a importancia da nota
     private Turma turma;//valor da nota maxima na atividade
-    private NotaDAO lisNotas=new NotaDAO();//lista de notas de cada aluno na atividade 
+    private NotaDAO listaNotas=new NotaDAO();//lista de notas de cada aluno na atividade 
     
     public Float getPeso(){
         return this.peso;
@@ -39,7 +39,9 @@ public class Atividade implements Comparable<Atividade>{
     }
     /*a comparação entre 2 classes é baseada primariamente na turmae no nome 
     para criterio de desempate*/
-    
+    public NotaDAO getListaNota(){
+        return this.listaNotas;
+    }
     
     @Override
     public int compareTo (Atividade atividade){

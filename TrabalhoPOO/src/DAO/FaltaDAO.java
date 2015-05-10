@@ -19,7 +19,7 @@ import java.util.List;
  * @author Vitor
  */
 public class FaltaDAO {
-    List<Falta> listaFalta = new ArrayList<Falta>();
+    private ArrayList<Falta> listaFalta = new ArrayList<Falta>();
     
     public void adicionar(Falta falta){
         listaFalta.add(falta);
@@ -44,6 +44,11 @@ public class FaltaDAO {
         }
         return null;
     }
+    public ArrayList<Falta> getListaFalta(){
+        return this.listaFalta;
+    }
+
+
     
     
     

@@ -64,7 +64,7 @@ public class Menu {
                     menuProfessor.menuOpcao(professorDAO);
                     break;
                 case 3:
-                    menuAluno.menuOpcao();
+                    menuAluno.menuOpcao(alunoDAO, disciplinaDAO, turmaDAO, notaDAO, faltaDAO);
                     break;
                 case 4:
                    //TODO listagem do numero de turmas ja oferecidas de uma disciplina
