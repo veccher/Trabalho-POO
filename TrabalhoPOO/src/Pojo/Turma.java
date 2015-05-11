@@ -65,6 +65,12 @@ public class Turma implements Comparable<Turma> {
     public AtividadeDAO getListaAtividades(){
         return this.listaAtividades;
     }
+    public AlunoDAO getListaMatricula(){
+        return this.listaDeMatricula;
+    }
+    public void setListaDeFaltas(FaltaDAO faltaDAO){
+        this.listaDeFaltas=faltaDAO;
+    }
     @Override
     public boolean equals(Object obj){
         

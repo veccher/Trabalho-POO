@@ -42,7 +42,9 @@ public class Atividade implements Comparable<Atividade>{
     public NotaDAO getListaNota(){
         return this.listaNotas;
     }
-    
+    public void setListaNotas (NotaDAO notaDAO){
+        this.listaNotas=notaDAO;
+    }
     @Override
     public int compareTo (Atividade atividade){
         return this.nome.compareTo(atividade.nome);
