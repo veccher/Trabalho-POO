@@ -41,11 +41,21 @@ public class MenuAluno {
              return null;
          }
          return aluno;
-     }
+    }
+    public static ArrayList<Aluno> alunosNaTurma (ArrayList<Integer> lisCPF,
+                                                    AlunoDAO alunoDAO){
+        ArrayList<Aluno> alunosTurma=new ArrayList<Aluno>();
+        for (Integer cpf: lisCPF){
+            alunosTurma.add(alunoDAO.buscaAluno(cpf));
+        }
+        return alunosTurma;
+        
+    }
+    //função afetada por mudanças em pojo, muito grande, refazer
     public void consultaDisciplina(Aluno aluno, DisciplinaDAO disciplinaDAO,TurmaDAO turmaDAO,
                                    NotaDAO notaDAO, String nomeDisciplina){
         
-        Disciplina disciplina = disciplinaDAO.buscaDisciplina(nomeDisciplina);
+        /*Disciplina disciplina = disciplinaDAO.buscaDisciplina(nomeDisciplina);
         if(disciplina==null){
             System.out.println("Disciplina nao encontrada");
         }else{
@@ -63,7 +73,7 @@ public class MenuAluno {
             int posicaoAluno;
             float pesoTotal=0;
             float notaFinal=0;
-            posicaoAluno = turma.getListaAlunos().getListaAluno().indexOf(aluno);
+            posicaoAluno = alunoDAO.getListaAluno().indexOf(aluno);
             if(posicaoAluno==-1){
                 System.out.println("Não Consta tal aluno na turma");
             }else{
@@ -94,7 +104,7 @@ public class MenuAluno {
             
         }
         
-        }
+        }*/
     }
     
     

@@ -94,7 +94,8 @@ public class MenuProfessor {
          return true;
      }
      //essa função vai lançar as notas de todos os alunos para uma determinada atividade
-     public static void lancaNotas (Professor professor,DisciplinaDAO disciplinaDAO){
+     public static void lancaNotas (Professor professor,DisciplinaDAO disciplinaDAO
+                                    ,AlunoDAO alunoDAO){
          Turma turma=getTurmaDoProfessor(professor,disciplinaDAO);
          Scanner scanner=new Scanner(System.in);
          Atividade atividade;
@@ -104,7 +105,7 @@ public class MenuProfessor {
              String nome=scanner.nextLine();
              atividade=turma.getListaAtividades().buscaAtividade(nome);
          }while (atividade==null);
-         for (Aluno aluno : turma.getListaMatricula().getListaAluno()){
+         for (Aluno aluno : MenuAluno.alunosNaTurma(turma.getListaAlunos(), alunoDAO)){
              System.out.println("Digite a nota do aluno "+aluno.getNome());
              Float notaRecebida=scanner.nextFloat();
              Nota nota=new Nota(notaRecebida,aluno,atividade);
@@ -113,11 +114,12 @@ public class MenuProfessor {
          atividade.setListaNotas(notaDAO);
      }
      //lança o numero total de faltas dos alunos de uma turma;
-     public static void lancaFaltas (Professor professor,DisciplinaDAO disciplinaDAO){
+     public static void lancaFaltas (Professor professor,DisciplinaDAO disciplinaDAO,
+                                    AlunoDAO alunoDAO){
          Turma turma=getTurmaDoProfessor(professor,disciplinaDAO);
          Scanner scanner=new Scanner(System.in);
          FaltaDAO faltaDAO=new FaltaDAO();
-         for (Aluno aluno : turma.getListaMatricula().getListaAluno()){
+         for (Aluno aluno : MenuAluno.alunosNaTurma(turma.getListaAlunos(), alunoDAO)){
              System.out.println("Digite o numero de faltas do aluno "+aluno.getNome());
              Integer numFaltas=parseInt(scanner.nextLine());
              Falta falta=new Falta(numFaltas,aluno,turma);
@@ -141,14 +143,15 @@ public class MenuProfessor {
          }
          return res;
      }
-     public void menuOpcao(ProfessorDAO professorDAO,DisciplinaDAO disciplinaDAO){
+     public void menuOpcao(ProfessorDAO professorDAO,DisciplinaDAO disciplinaDAO,
+             AlunoDAO alunoDAO){
          Professor professor=login(professorDAO);
          Integer opcao=getAcao();
          do{
             switch (opcao){
                 case 1: adicionaAtividade(professor,disciplinaDAO);break;
-                case 2: lancaNotas(professor, disciplinaDAO);break;
-                case 3: lancaFaltas(professor, disciplinaDAO);break;
+                case 2: lancaNotas(professor, disciplinaDAO,alunoDAO);break;
+                case 3: lancaFaltas(professor, disciplinaDAO,alunoDAO);break;
                 case 4:break;
             } 
          }while (opcao!=4);

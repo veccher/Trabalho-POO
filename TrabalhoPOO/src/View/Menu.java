@@ -61,7 +61,7 @@ public class Menu {
                     menuAdmin.menuOpcao(professorDAO, alunoDAO,turmaDAO, disciplinaDAO);
                     break;
                 case 2:
-                    menuProfessor.menuOpcao(professorDAO,disciplinaDAO);
+                    menuProfessor.menuOpcao(professorDAO,disciplinaDAO,alunoDAO);
                     break;
                 case 3:
                     menuAluno.menuOpcao(alunoDAO, disciplinaDAO, turmaDAO, notaDAO, faltaDAO);

@@ -8,6 +8,7 @@ package Pojo;
 import DAO.AlunoDAO;
 import DAO.AtividadeDAO;
 import DAO.FaltaDAO;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Turma implements Comparable<Turma> {
     private Integer numVagas;//numero de vagas disponíveis para matricula
     private Professor professor;//professor responsavel por lecionar a disciplina
     private Disciplina disciplina;//disciplina que a turma pertence
-    private AlunoDAO listaDeMatricula = new AlunoDAO();//lista de alunos na turma
+    private ArrayList<Integer> listaCpfAluno;//lista de cpf dos alunos da turma
     private AtividadeDAO listaAtividades=new AtividadeDAO();//lista de todas as atividades
     private FaltaDAO listaDeFaltas=new FaltaDAO();//lista de faltas de cada aluno
     
@@ -49,6 +50,8 @@ public class Turma implements Comparable<Turma> {
         professor.incrementaNumDisciplinas();
         disciplina.incrementaNumTurmas();
         professor.tutoraTurma(this);
+        listaCpfAluno=new ArrayList<Integer>();
+        
     }
     public Integer getAno(){
         return this.ano;
@@ -56,17 +59,14 @@ public class Turma implements Comparable<Turma> {
     public Disciplina getDisciplina(){
         return this.disciplina;
     }
-    public AlunoDAO getListaAlunos(){
-        return this.listaDeMatricula;
+    public ArrayList<Integer> getListaAlunos(){
+        return this.listaCpfAluno;
     }
     public FaltaDAO getListaFaltas(){
         return this.listaDeFaltas;
     }
     public AtividadeDAO getListaAtividades(){
         return this.listaAtividades;
-    }
-    public AlunoDAO getListaMatricula(){
-        return this.listaDeMatricula;
     }
     public void setListaDeFaltas(FaltaDAO faltaDAO){
         this.listaDeFaltas=faltaDAO;
@@ -86,7 +86,7 @@ public class Turma implements Comparable<Turma> {
         if (aluno==null){
             return false;
         }
-        this.listaDeMatricula.adicionar(aluno);
+        this.listaCpfAluno.add(aluno.getCpf());
         return true;
     }
     public int compareTo(Turma turma){
