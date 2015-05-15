@@ -33,6 +33,12 @@ public class Falta implements Comparable<Falta>{
         this.aluno=aluno;
         this.turma=turma;
     }
+    public void setTurma(Turma turma){
+        this.turma=turma;
+    }
+    public void setAluno(Aluno aluno){
+        this.aluno=aluno;
+    }
     
     @Override
     //compareTo vai ser usado pra ordenação e vai ser baseado apenas em aluno

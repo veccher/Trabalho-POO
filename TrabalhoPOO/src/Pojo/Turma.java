@@ -87,6 +87,13 @@ public class Turma implements Comparable<Turma> {
     public void setListaDeFaltas(ArrayList<Falta> lisFaltas){
         this.listaDeFaltas=lisFaltas;
     }
+    public void addAtividade(Atividade atividade ){
+        this.listaAtividades.add(atividade);
+    }
+    public void addFalta(Falta falta){
+        this.listaDeFaltas.add(falta);
+    }
+    
     @Override
     public boolean equals(Object obj){
         

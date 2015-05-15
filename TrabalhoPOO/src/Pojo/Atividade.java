@@ -50,6 +50,13 @@ public class Atividade implements Comparable<Atividade>{
     public void setListaNotas (ArrayList<Nota> lisNotas){
         this.listaNotas=lisNotas;
     }
+    public void addNota(Nota nota){
+        this.listaNotas.add(nota);
+    }
+    public void setTurma(Turma turma){
+        this.turma=turma;
+    }
+    
     @Override
     public int compareTo (Atividade atividade){
         return this.nome.compareTo(atividade.nome);

@@ -35,6 +35,13 @@ public class Nota implements Comparable<Nota>{
             this.nota=novaNota;
         }
     }
+    public void setAluno(Aluno aluno){
+        this.aluno=aluno;
+    }
+    
+    public void setAtividade(Atividade atividade){
+        this.atividade=atividade;
+    }
     
     @Override
     public boolean equals(Object obj){
