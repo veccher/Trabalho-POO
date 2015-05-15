@@ -52,7 +52,7 @@ public class MenuProfessor {
      public static Turma getTurmaDoProfessor (Professor professor,DisciplinaDAO
                                               disciplinaDAO){
          Scanner scanner=new Scanner(System.in);
-         Turma turma;
+         Turma turma=null;
          Disciplina disciplina;
          if (professor==null || disciplinaDAO==null)
              return null;
@@ -64,7 +64,11 @@ public class MenuProfessor {
          do{
              System.out.println("digite a id da turma");
              Integer idTurma=parseInt(scanner.nextLine());
-             turma=professor.getTurmasTutoradas().buscaTurma(disciplina, idTurma);
+             for (Turma t : professor.getTurmasTutoradas()){
+                 Turma aux=new Turma(idTurma, disciplina);
+                 if (aux.equals(t));
+                 turma=t;
+             }
          }while(turma==null);
          return turma;
      }
@@ -79,7 +83,12 @@ public class MenuProfessor {
                             + "haja outra atividade com o mesmo nome cadastrado"
                             + "nessa turma");
              nome=scanner.nextLine();
-         }while (turma.getListaAtividades().buscaAtividade(nome)!=null);
+             for (Atividade atividade:turma.getListaAtividades()){
+                 if (atividade.getNome().equals(nome))
+                     continue;
+             }
+             break;   
+         }while (true);
          System.out.println("Digite o tipo da atividade");
          String tipo=scanner.nextLine();
          System.out.println("digite o dia de entrega da atividade");
@@ -90,7 +99,7 @@ public class MenuProfessor {
          System.out.println("Digite o valor do peso avaliativo da atividade");
          Float peso=scanner.nextFloat();
          Atividade atividade=new Atividade(nome,tipo,data,peso,turma);
-         turma.getListaAtividades().adicionar(atividade);
+         turma.getListaAtividades().add(atividade);
          return true;
      }
      //essa função vai lançar as notas de todos os alunos para uma determinada atividade
@@ -98,34 +107,38 @@ public class MenuProfessor {
                                     ,AlunoDAO alunoDAO){
          Turma turma=getTurmaDoProfessor(professor,disciplinaDAO);
          Scanner scanner=new Scanner(System.in);
-         Atividade atividade;
-         NotaDAO notaDAO=new NotaDAO();
+         Atividade atividade=null;
+         ArrayList<Nota> notas=new ArrayList<Nota>();
          do{
              System.out.println("Digite o nome da atividade que deseja lançar notas");
              String nome=scanner.nextLine();
-             atividade=turma.getListaAtividades().buscaAtividade(nome);
+             //atividade=turma.getListaAtividades().buscaAtividade(nome);
+             for(Atividade aux : turma.getListaAtividades()){
+                 if(aux.getNome().equals(nome))
+                     atividade=aux;
+             }
          }while (atividade==null);
-         for (Aluno aluno : MenuAluno.alunosNaTurma(turma.getListaAlunos(), alunoDAO)){
+         for (Aluno aluno : turma.getListaAlunos()){
              System.out.println("Digite a nota do aluno "+aluno.getNome());
              Float notaRecebida=scanner.nextFloat();
              Nota nota=new Nota(notaRecebida,aluno,atividade);
-             notaDAO.adicionar(nota);
+             notas.add(nota);
          }
-         atividade.setListaNotas(notaDAO);
+         atividade.setListaNotas(notas);
      }
      //lança o numero total de faltas dos alunos de uma turma;
      public static void lancaFaltas (Professor professor,DisciplinaDAO disciplinaDAO,
                                     AlunoDAO alunoDAO){
          Turma turma=getTurmaDoProfessor(professor,disciplinaDAO);
          Scanner scanner=new Scanner(System.in);
-         FaltaDAO faltaDAO=new FaltaDAO();
-         for (Aluno aluno : MenuAluno.alunosNaTurma(turma.getListaAlunos(), alunoDAO)){
+         ArrayList<Falta> lisFaltas=new ArrayList<Falta>();
+         for (Aluno aluno : turma.getListaAlunos()){
              System.out.println("Digite o numero de faltas do aluno "+aluno.getNome());
              Integer numFaltas=parseInt(scanner.nextLine());
              Falta falta=new Falta(numFaltas,aluno,turma);
-             faltaDAO.adicionar(falta);
+             lisFaltas.add(falta);
          }
-         turma.setListaDeFaltas(faltaDAO);
+         turma.setListaDeFaltas(lisFaltas);
      }
      public static Integer getAcao(){
          System.out.println("Digite 1 para criar uma atividade");

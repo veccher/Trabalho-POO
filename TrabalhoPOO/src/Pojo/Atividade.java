@@ -6,6 +6,7 @@
 package Pojo;
 
 import DAO.NotaDAO;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -18,10 +19,13 @@ public class Atividade implements Comparable<Atividade>{
     private Date data;//data da atividade
     private Float peso;//coeficiente que indica a importancia da nota
     private Turma turma;//valor da nota maxima na atividade
-    private NotaDAO listaNotas=new NotaDAO();//lista de notas de cada aluno na atividade 
+    private ArrayList<Nota> listaNotas;//lista de notas de cada aluno na atividade 
     
     public Float getPeso(){
         return this.peso;
+    }
+    public String getNome(){
+        return this.nome;
     }
     /*o construtor simplesmente inicializa as variaveis, e faz o chec para
     garantir que o valor da atividade não seja negativo.*/
@@ -33,17 +37,18 @@ public class Atividade implements Comparable<Atividade>{
             this.peso=peso;
         }
         this.turma=turma;
+        listaNotas=new ArrayList<Nota>();
     }
     public Atividade (String nome){
         this.nome=nome;
     }
     /*a comparação entre 2 classes é baseada primariamente na turmae no nome 
     para criterio de desempate*/
-    public NotaDAO getListaNota(){
+    public ArrayList<Nota> getListaNota(){
         return this.listaNotas;
     }
-    public void setListaNotas (NotaDAO notaDAO){
-        this.listaNotas=notaDAO;
+    public void setListaNotas (ArrayList<Nota> lisNotas){
+        this.listaNotas=lisNotas;
     }
     @Override
     public int compareTo (Atividade atividade){

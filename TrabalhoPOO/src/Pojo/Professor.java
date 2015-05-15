@@ -7,6 +7,7 @@
 package Pojo;
 
 import DAO.TurmaDAO;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +15,7 @@ import DAO.TurmaDAO;
  */
 public class Professor extends Pessoa implements Comparable<Professor>{
     private String departamento; //departamento ao qual o prof pertence
-    private TurmaDAO turmasTutoradas;//turmas que o prof leciona
+    private ArrayList<Turma> turmasTutoradas;//turmas que o prof leciona
     private Integer numeroDisciplinas;/*numero de disciplinas lecionadas 
     historicamente pelo professor*/
     
@@ -28,6 +29,11 @@ public class Professor extends Pessoa implements Comparable<Professor>{
         this.departamento=departamento;
         this.numeroDisciplinas=0;
     }
+    public Professor (String nome,Integer cpf,String departamento,Integer numDisciplinas){
+        super (nome,cpf);
+        this.departamento=departamento;
+        this.numeroDisciplinas=numDisciplinas;
+    }
     //retorna o numero de disciplinas ja lecionadas pelo professor
     public Integer getNumeroDisciplinas(){
         return this.numeroDisciplinas;
@@ -36,11 +42,11 @@ public class Professor extends Pessoa implements Comparable<Professor>{
     public void incrementaNumDisciplinas(){
         this.numeroDisciplinas++;
     }
-    public TurmaDAO getTurmasTutoradas(){
+    public ArrayList<Turma> getTurmasTutoradas(){
         return this.turmasTutoradas;
     }
     public void tutoraTurma (Turma turma){
-        this.turmasTutoradas.adicionar(turma);
+        this.turmasTutoradas.add(turma);
     }
     
     @Override

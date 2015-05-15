@@ -23,9 +23,9 @@ public class Turma implements Comparable<Turma> {
     private Integer numVagas;//numero de vagas disponíveis para matricula
     private Professor professor;//professor responsavel por lecionar a disciplina
     private Disciplina disciplina;//disciplina que a turma pertence
-    private ArrayList<Integer> listaCpfAluno;//lista de cpf dos alunos da turma
-    private AtividadeDAO listaAtividades=new AtividadeDAO();//lista de todas as atividades
-    private FaltaDAO listaDeFaltas=new FaltaDAO();//lista de faltas de cada aluno
+    private ArrayList<Aluno> listaAluno;//lista de cpf dos alunos da turma
+    private ArrayList<Atividade> listaAtividades;//lista de todas as atividades
+    private ArrayList<Falta> listaDeFaltas;//lista de faltas de cada aluno
     
     /*construtor de turma, recebe todos os dados necessarios, e incrementa
     o numero de turmas ja lecionadas por aquele professor e n de turmas ja
@@ -50,8 +50,24 @@ public class Turma implements Comparable<Turma> {
         professor.incrementaNumDisciplinas();
         disciplina.incrementaNumTurmas();
         professor.tutoraTurma(this);
-        listaCpfAluno=new ArrayList<Integer>();
-        
+        listaAluno=new ArrayList<Aluno>();
+        listaAtividades=new ArrayList<Atividade>();
+        listaDeFaltas=new ArrayList<Falta>();
+    }
+    public Turma (Integer idTurma,Integer ano,Integer periodo, String local,
+                  String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+        this.idTurma=idTurma;
+        this.ano=ano;
+        this.periodo=periodo;
+        this.local=local;
+        this.horario=horario;
+        this.numVagas=numVagas;
+        this.professor=professor;
+        this.disciplina=disciplina;
+        professor.tutoraTurma(this);
+        listaAluno=new ArrayList<Aluno>();
+        listaAtividades=new ArrayList<Atividade>();
+        listaDeFaltas=new ArrayList<Falta>();
     }
     public Integer getAno(){
         return this.ano;
@@ -59,17 +75,17 @@ public class Turma implements Comparable<Turma> {
     public Disciplina getDisciplina(){
         return this.disciplina;
     }
-    public ArrayList<Integer> getListaAlunos(){
-        return this.listaCpfAluno;
+    public ArrayList<Aluno> getListaAlunos(){
+        return this.listaAluno;
     }
-    public FaltaDAO getListaFaltas(){
+    public ArrayList<Falta> getListaFaltas(){
         return this.listaDeFaltas;
     }
-    public AtividadeDAO getListaAtividades(){
+    public ArrayList<Atividade> getListaAtividades(){
         return this.listaAtividades;
     }
-    public void setListaDeFaltas(FaltaDAO faltaDAO){
-        this.listaDeFaltas=faltaDAO;
+    public void setListaDeFaltas(ArrayList<Falta> lisFaltas){
+        this.listaDeFaltas=lisFaltas;
     }
     @Override
     public boolean equals(Object obj){
@@ -86,7 +102,7 @@ public class Turma implements Comparable<Turma> {
         if (aluno==null){
             return false;
         }
-        this.listaCpfAluno.add(aluno.getCpf());
+        this.listaAluno.add(aluno);
         return true;
     }
     public int compareTo(Turma turma){
