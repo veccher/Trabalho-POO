@@ -39,6 +39,9 @@ public class Professor extends Pessoa implements Comparable<Professor>{
         return this.numeroDisciplinas;
     }/*função deve ser chamada cada vez que um professor for cadastrado numa
     nova turma*/
+    public String getDepartamento(){
+        return this.departamento;
+    }
     public void incrementaNumDisciplinas(){
         this.numeroDisciplinas++;
     }

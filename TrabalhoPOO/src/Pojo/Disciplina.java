@@ -25,6 +25,12 @@ public class Disciplina implements Comparable<Disciplina> {
     public Integer getNumTurmas(){
         return this.numTurmas;
     }
+    public String getEmenta(){
+        return this.ementa;
+    }
+    public String getNome(){
+        return this.nome;
+    }
     //cria nova disciplina com todos os dados exceto numTurmas que é 0 ao criar
     public Disciplina (){
         
@@ -34,6 +40,12 @@ public class Disciplina implements Comparable<Disciplina> {
         this.ementa=ementa;
         this.chs=chs;
         this.numTurmas=0;
+    }
+    public Disciplina (String nome,String ementa,Integer chs,Integer numTurmas){
+        this.nome=nome;
+        this.ementa=ementa;
+        this.chs=chs;
+        this.numTurmas=numTurmas;
     }
     public Integer getChs(){
         return this.chs;

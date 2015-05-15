@@ -6,6 +6,12 @@
 
 package DAO;
 import Pojo.Disciplina;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 /**
@@ -36,5 +42,45 @@ public class DisciplinaDAO {
         }
         return null;
     }
-    
+    public void escreverArquivo(){
+       
+        try {
+        
+            FileWriter fw = new FileWriter("Disciplinas.txt",false);
+            PrintWriter saida = new PrintWriter(fw,true);
+            for(Disciplina disciplina : this.listaDisciplina){
+                saida.println(disciplina.getNome());
+                saida.println(disciplina.getEmenta());
+                saida.println(disciplina.getChs());
+                saida.println(disciplina.getNumTurmas());
+            }    
+            
+            saida.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void lerArquivo(){
+        
+        FileReader fileR;
+        BufferedReader buff;
+        try {        
+            fileR = new FileReader("Disciplinas.txt");
+            buff = new BufferedReader(fileR);
+            while(buff.ready()){
+                Disciplina disciplina = new Disciplina(buff.readLine(),
+                                        buff.readLine(),
+                                        Integer.parseInt(buff.readLine()),
+                                        Integer.parseInt(buff.readLine()));
+                this.adicionar(disciplina);
+            }
+            buff.close();
+            fileR.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }            
+    }
 }

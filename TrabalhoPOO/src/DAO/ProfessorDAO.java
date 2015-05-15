@@ -7,6 +7,12 @@
 package DAO;
 
 import Pojo.Professor;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,5 +43,45 @@ public class ProfessorDAO {
         }
         return null;
     }
-    
+    public void escreverArquivo(){
+       
+        try {
+        
+            FileWriter fw = new FileWriter("Professores.txt",false);
+            PrintWriter saida = new PrintWriter(fw,true);
+            for(Professor professor : this.listaProfessor){
+                saida.println(professor.getNome());
+                saida.println(professor.getCpf());
+                saida.println(professor.getDepartamento());
+                saida.println(professor.getNumeroDisciplinas());
+            }    
+            
+            saida.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void lerArquivo(){
+        
+        FileReader fileR;
+        BufferedReader buff;
+        try {        
+            fileR = new FileReader("Professores.txt");
+            buff = new BufferedReader(fileR);
+            while(buff.ready()){
+                Professor professor = new Professor(buff.readLine(),
+                                      Integer.parseInt(buff.readLine()),
+                                      buff.readLine(),
+                                      Integer.parseInt(buff.readLine()));
+                this.adicionar(professor);
+            }
+            buff.close();
+            fileR.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }            
+    }
 }

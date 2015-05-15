@@ -7,6 +7,12 @@
 package DAO;
 
 import Pojo.Aluno;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -41,5 +47,41 @@ public class AlunoDAO {
     }
     public ArrayList<Aluno> getListaAluno(){
         return this.listaAluno;
+    }
+    public void escreverArquivo(){
+       
+        try {
+        
+            FileWriter fw = new FileWriter("Alunos.txt",false);
+            PrintWriter saida = new PrintWriter(fw,true);
+            for(Aluno aluno : this.listaAluno){
+                saida.println(aluno.getNome());
+                saida.println(aluno.getCpf());
+            }    
+            
+            saida.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void lerArquivo(){
+        
+        FileReader fileR;
+        BufferedReader buff;
+        try {        
+            fileR = new FileReader("Alunos.txt");
+            buff = new BufferedReader(fileR);
+            while(buff.ready()){
+                Aluno aluno = new Aluno(buff.readLine(),Integer.parseInt(buff.readLine()));
+                this.adicionar(aluno);
+            }
+            buff.close();
+            fileR.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }            
     }
 }
