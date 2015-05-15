@@ -5,13 +5,16 @@
  */
 
 package View;
-import DAO.ProfessorDAO;
 import DAO.AlunoDAO;
-import DAO.DisciplinaDAO;
-import DAO.TurmaDAO;
-import DAO.NotaDAO;
-import DAO.FaltaDAO;
 import DAO.AtividadeDAO;
+import DAO.DisciplinaDAO;
+import DAO.FaltaDAO;
+import DAO.NotaDAO;
+import DAO.ProfessorDAO;
+import DAO.TurmaDAO;
+import Pojo.Aluno;
+import Pojo.Disciplina;
+import Pojo.Professor;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -52,7 +55,7 @@ public class Menu {
         Menu menu = new Menu();
         Scanner scanner = new Scanner(System.in);
         byte opcao;
-       
+        
         do{
             menu.imprimeMenu();
             opcao = scanner.nextByte();

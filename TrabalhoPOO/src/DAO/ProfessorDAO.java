@@ -84,4 +84,8 @@ public class ProfessorDAO {
             ex.printStackTrace();
         }            
     }
+    
+    public ArrayList<Professor> getListaProfessor(){
+        return this.listaProfessor;
+    }
 }

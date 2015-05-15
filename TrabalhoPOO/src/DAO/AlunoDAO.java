@@ -73,7 +73,9 @@ public class AlunoDAO {
             fileR = new FileReader("Alunos.txt");
             buff = new BufferedReader(fileR);
             while(buff.ready()){
-                Aluno aluno = new Aluno(buff.readLine(),Integer.parseInt(buff.readLine()));
+                Aluno aluno = new Aluno();
+                aluno.setNome(buff.readLine());
+                aluno.setCpf(Integer.parseInt(buff.readLine()));
                 this.adicionar(aluno);
             }
             buff.close();

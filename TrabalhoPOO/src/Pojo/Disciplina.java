@@ -53,6 +53,10 @@ public class Disciplina implements Comparable<Disciplina> {
     public void setNome(String nome){
         this.nome=nome;
     }
+    public String ToString(){
+        return "Nome: "+this.nome+"\n"+"Ementa:"+this.ementa+"\n"+"CHS: "+
+                this.chs+"\n"+"Num Turmas: "+this.numTurmas;
+    }
     
      @Override
     public boolean equals(Object obj){

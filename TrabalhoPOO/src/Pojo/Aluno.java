@@ -18,6 +18,10 @@ public class Aluno extends Pessoa implements Comparable <Aluno> {
    public Aluno (String nome,Integer cpf){
         super (nome,cpf);
     }
+   
+   public String ToString(){
+       return "Nome:"+this.getNome()+"\n"+"Cpf:"+this.getCpf() ;
+   }
   
     @Override
     //para comparação será usado cpf, onde cpfs iguais significam alunos iguais

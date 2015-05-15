@@ -83,4 +83,8 @@ public class DisciplinaDAO {
             ex.printStackTrace();
         }            
     }
+    
+    public ArrayList<Disciplina> getListaDisciplina(){
+        return this.listaDisciplina;
+    }
 }

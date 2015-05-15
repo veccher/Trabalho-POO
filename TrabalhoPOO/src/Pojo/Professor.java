@@ -42,6 +42,9 @@ public class Professor extends Pessoa implements Comparable<Professor>{
     public String getDepartamento(){
         return this.departamento;
     }
+    public void setDepartamento(String departamento){
+        this.departamento=departamento;
+    }
     public void incrementaNumDisciplinas(){
         this.numeroDisciplinas++;
     }
@@ -50,6 +53,11 @@ public class Professor extends Pessoa implements Comparable<Professor>{
     }
     public void tutoraTurma (Turma turma){
         this.turmasTutoradas.add(turma);
+    }
+    public String ToString(){
+        return "Nome: "+this.getNome()+"\n"+"Cpf: "+this.getCpf()+"\n"+"Departamento: "
+                + this.departamento+"\n"+"Numero de Disciplinas Lecionadas: "+
+                this.numeroDisciplinas;
     }
     
     @Override
