@@ -51,11 +51,12 @@ public class MenuAluno {
         return alunosTurma;
         
     }
-    //função afetada por mudanças em pojo, muito grande, refazer
+    /*A função verifica se um aluno foi aprovado em uma disciplina,
+    verificando sua nota e falta*/
     public void consultaDisciplina(Aluno aluno, DisciplinaDAO disciplinaDAO,TurmaDAO turmaDAO,
                                    NotaDAO notaDAO, String nomeDisciplina){
         
-        /*Disciplina disciplina = disciplinaDAO.buscaDisciplina(nomeDisciplina);
+        Disciplina disciplina = disciplinaDAO.buscaDisciplina(nomeDisciplina);
         if(disciplina==null){
             System.out.println("Disciplina nao encontrada");
         }else{
@@ -63,49 +64,57 @@ public class MenuAluno {
         Turma turma=null;
         ArrayList<Turma> listaTurma = turmaDAO.getListaTurma();
         for(Turma aux : listaTurma){
-            if(aux.getDisciplina().equals(disciplina)){
+            if(aux.getDisciplina().equals(disciplina) && aux.getListaAlunos().contains(aux)==true){
                 turma = aux;
             }
         }
         if(turma==null){
-            System.out.println("Nao foi encontrada nenhuma turma com tal disciplina");
+            System.out.println("Não foi encontrada nenhuma turma desta disciplina com"
+                               + "matricula deste aluno");
         }else{
-            int posicaoAluno;
             float pesoTotal=0;
             float notaFinal=0;
-            posicaoAluno = alunoDAO.getListaAluno().indexOf(aluno);
-            if(posicaoAluno==-1){
-                System.out.println("Não Consta tal aluno na turma");
+            for (Atividade atividade:turma.getListaAtividades()){
+                Nota nota=null;
+                for(Nota notaAux:atividade.getListaNota()){
+                    if (notaAux.getAluno().equals(aluno)){
+                        nota=notaAux;
+                        break;
+                    }    
+                }
+                if (nota==null){
+                    System.out.println("Nota não encontrada");
+                    break;
+                }        
+                pesoTotal+=atividade.getPeso();
+                notaFinal+=atividade.getPeso()* nota.getNota();
+            }
+            notaFinal = notaFinal/pesoTotal;//notal final
+            System.out.println("Nota Final:"+notaFinal);  
+            Falta falta=null;
+            for (Falta faltaAux:turma.getListaFaltas()){
+                if (faltaAux.getAluno().equals(aluno)){
+                    falta=faltaAux;
+                    break;
+                }
+            }
+            if (falta==null){
+                System.out.println("Não foi encontrado o numero de faltas");
+            }
+            float relacaoFaltas = falta.getNumFaltas()/disciplina.getChs();//% de faltas
+            System.out.println("Numero de Faltas:"+falta.getNumFaltas());    
+            if(notaFinal>=6.0&&relacaoFaltas>=0.25){
+                System.out.println("Situação : Aprovado!");
             }else{
-                
-                ArrayList<Atividade> listaAtividade = turma.getListaAtividades().getListaAtividade();
-                for(Atividade atividade : listaAtividade){
-                    ArrayList<Nota> notas = atividade.getListaNota().getListaNota();
-                    Nota nota = notas.get(posicaoAluno);
-                    pesoTotal+=atividade.getPeso();
-                    notaFinal+=atividade.getPeso()* nota.getNota();
-                }
-                notaFinal = notaFinal/pesoTotal;//notal final
-                System.out.println("Nota Final:"+notaFinal);
+                System.out.println("Situação : Reprovado!");
+            }
             
-                ArrayList<Falta> listaFalta = turma.getListaFaltas().getListaFalta();
-                Falta falta = listaFalta.get(posicaoAluno);
-            
-                float relacaoFaltas = falta.getNumFaltas()/disciplina.getChs();//% de faltas
-                System.out.println("Numero de Faltas:"+falta.getNumFaltas());
-            
-                if(notaFinal>=6.0&&relacaoFaltas>=0.25){
-                    System.out.println("Situação : Aprovado!");
-                }else{
-                    System.out.println("Situação : Reprovado!");
-                }
-            
-             }
+        }
             
         }
         
-        }*/
     }
+    
     
     
     /**Método que imprime o Menu

@@ -16,6 +16,7 @@ import Pojo.Aluno;
 import Pojo.Disciplina;
 import Pojo.Professor;
 import java.io.FileNotFoundException;
+import static java.lang.Integer.parseInt;
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -70,10 +71,51 @@ public class Menu {
                     menuAluno.menuOpcao(alunoDAO, disciplinaDAO, turmaDAO, notaDAO, faltaDAO);
                     break;
                 case 4:
-                   //TODO listagem do numero de turmas ja oferecidas de uma disciplina
+                    System.out.println("Lista de Disciplinas:");
+                    int cont=1;
+                    int numTurmas;
+                        for(Disciplina disciplina:disciplinaDAO.getListaDisciplina()){
+                            System.out.println(cont +"-"+disciplina.getNome());
+                            cont++;
+                        }
+                    cont--;
+                    while (true){
+                        System.out.println("Digite o indice da Disciplina que deseja"
+                                          +"(o indice se encontra a esquerda do"
+                                          +"nome da disciplina");
+                        int index=parseInt(scanner.nextLine());
+                        if (index>cont ||index<1){
+                            System.out.println("indice invalido, tente novamente");
+                            return;
+                        }
+                        numTurmas=disciplinaDAO.getListaDisciplina().get(index-1).getNumTurmas();
+                        System.out.println(numTurmas +" turmas ja foram oferecidas dessa disciplina");
+                        break;
+                    }
                     break;
                 case 5:
-                    //TODO listagem do numero de disciplinas ja lecionadas por um professor
+                    System.out.println("Lista de Professores:");
+                    int i=1;
+                    int numDisciplinas;
+                        for(Professor professor:professorDAO.getListaProfessor()){
+                            System.out.println(i +"-"+professor.getNome());
+                            i++;
+                        }
+                    i--;
+                    while (true){
+                        System.out.println("Digite o indice do professor que deseja"
+                                          +"(o indice se encontra a esquerda do"
+                                          +"nome do professor");
+                        int idx=parseInt(scanner.nextLine());
+                        if (idx>i ||idx<1){
+                            System.out.println("indice invalido, tente novamente");
+                            return;
+                        }
+                        numDisciplinas=professorDAO.getListaProfessor().get(idx-1).getNumeroDisciplinas();
+                        System.out.println(numDisciplinas +" turmas ja foram lecionadas por esse professor");
+                        break;
+                    }
+                    break;
                 case 6:
                     break;
                 default:
