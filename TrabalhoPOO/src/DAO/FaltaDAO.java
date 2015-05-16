@@ -87,6 +87,7 @@ public class FaltaDAO {
                 falta.setAluno(alunoDAO.buscaAluno(Integer.parseInt(buff.readLine())));
                 falta.setTurma(turmaDAO.buscaTurma(disciplinaDAO.buscaDisciplina(buff.readLine())
                         , Integer.parseInt(buff.readLine())));
+                falta.getTurma().addFalta(falta);
 
                 this.adicionar(falta);
             }

@@ -90,12 +90,12 @@ public class TurmaDAO {
                 Integer.parseInt(buff.readLine()),Integer.parseInt(buff.readLine())
                 ,buff.readLine(),buff.readLine(),Integer.parseInt(buff.readLine()),
                         professorDAO.buscarProfessor(Integer.parseInt(buff.readLine())),
-                                disciplinaDAO.buscaDisciplina(buff.readLine()));
+                                disciplinaDAO.buscaDisciplina(buff.readLine()));                
                 int j=Integer.parseInt(buff.readLine());
                 for(int i=0;j>i;i++){
                     turma.matriculaAluno(alunoDAO.buscaAluno(Integer.parseInt(buff.readLine())));             
                     
-                }
+                }                
                 this.adicionar(turma);
                 
                 
