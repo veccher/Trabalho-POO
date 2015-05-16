@@ -34,6 +34,9 @@ public class Falta implements Comparable<Falta>{
             this.numFaltas=numFaltas;
         }
     }
+    public Falta(){
+        
+    }
     public Falta (Integer numFaltas,Aluno aluno, Turma turma){
         this.setNumFaltas(numFaltas);
         this.aluno=aluno;

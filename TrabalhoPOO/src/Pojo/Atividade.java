@@ -48,6 +48,9 @@ public class Atividade implements Comparable<Atividade>{
         this.turma=turma;
         listaNotas=new ArrayList<Nota>();
     }
+    public Atividade (){
+        
+    }
     public Atividade (String nome){
         this.nome=nome;
     }
@@ -62,6 +65,18 @@ public class Atividade implements Comparable<Atividade>{
     public void addNota(Nota nota){
         this.listaNotas.add(nota);
     }
+    public void setPeso(Float peso){
+        this.peso=peso;
+    }
+    public void setTipo(String tipo){
+        this.tipo=tipo;
+    }
+    public void setData(Date data){
+        this.data=data;
+    }
+    public void setNome(String nome){
+        this.nome=nome;
+    }
     public void setTurma(Turma turma){
         this.turma=turma;
     }
@@ -71,6 +86,6 @@ public class Atividade implements Comparable<Atividade>{
         return this.nome.compareTo(atividade.nome);
     }
     public boolean equals (Atividade atividade){
-        return(this.nome.equals(atividade.nome));
+        return(this.nome.equals(atividade.nome)&&this.turma.equals(atividade.turma));
     }
 }

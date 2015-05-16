@@ -10,6 +10,9 @@ import Pojo.Aluno;
 import Pojo.Professor;
 import Pojo.Disciplina;
 import Pojo.Turma;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -75,4 +78,35 @@ public class TurmaDAO {
         }
     }
    
+    public void lerArquivo(ProfessorDAO professorDAO, DisciplinaDAO disciplinaDAO, AlunoDAO alunoDAO){
+        
+        FileReader fileR;
+        BufferedReader buff;
+        try {        
+            fileR = new FileReader("Turmas.txt");
+            buff = new BufferedReader(fileR);
+            while(buff.ready()){
+                Turma turma = new Turma(Integer.parseInt(buff.readLine()),
+                Integer.parseInt(buff.readLine()),Integer.parseInt(buff.readLine())
+                ,buff.readLine(),buff.readLine(),Integer.parseInt(buff.readLine()),
+                        professorDAO.buscarProfessor(Integer.parseInt(buff.readLine())),
+                                disciplinaDAO.buscaDisciplina(buff.readLine()));
+                int j=Integer.parseInt(buff.readLine());
+                for(int i=0;j>i;i++){
+                    turma.matriculaAluno(alunoDAO.buscaAluno(Integer.parseInt(buff.readLine())));             
+                    
+                }
+                this.adicionar(turma);
+                
+                
+            }
+            buff.close();
+            fileR.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }            
+    }
+    
 }

@@ -9,6 +9,9 @@ package DAO;
 import Pojo.Aluno;
 import Pojo.Atividade;
 import Pojo.Nota;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -57,10 +60,10 @@ public class NotaDAO {
             for(Nota nota : this.listaNota){
                 saida.println(nota.getNota());
                 saida.println(nota.getAluno().getCpf());
-                saida.println(nota.getAluno().getCpf());
                 saida.println(nota.getAtividade().getNome());
-                saida.println(nota.getAtividade().getTurma().getIdTurma());
                 saida.println(nota.getAtividade().getTurma().getDisciplina().getNome());
+                saida.println(nota.getAtividade().getTurma().getIdTurma());
+                
             }    
             
             saida.close();
@@ -68,6 +71,32 @@ public class NotaDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void lerArquivo(AlunoDAO alunoDAO, AtividadeDAO atividadeDAO, TurmaDAO turmaDAO, DisciplinaDAO disciplinaDAO){
+        
+        FileReader fileR;
+        BufferedReader buff;
+        try {        
+            fileR = new FileReader("Notas.txt");
+            buff = new BufferedReader(fileR);
+            while(buff.ready()){
+                Nota nota = new Nota();
+                nota.setNota(Float.parseFloat(buff.readLine()));
+                nota.setAluno(alunoDAO.buscaAluno(Integer.parseInt(buff.readLine())));
+                nota.setAtividade(atividadeDAO.buscaAtividade(buff.readLine(),
+                                  turmaDAO.buscaTurma(disciplinaDAO.buscaDisciplina(buff.readLine()),
+                                            Integer.parseInt(buff.readLine()))));
+                nota.getAtividade().addNota(nota);
+                this.adicionar(nota);
+            }
+            buff.close();
+            fileR.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }            
     }
 
     

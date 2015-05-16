@@ -9,6 +9,9 @@ package DAO;
 import Pojo.Aluno;
 import Pojo.Falta;
 import Pojo.Turma;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -59,8 +62,9 @@ public class FaltaDAO {
             for(Falta falta : this.listaFalta){
                 saida.println(falta.getNumFaltas());
                 saida.println(falta.getAluno().getCpf());
-                saida.println(falta.getTurma().getIdTurma());
                 saida.println(falta.getTurma().getDisciplina().getNome());
+                saida.println(falta.getTurma().getIdTurma());
+                
             }    
             
             saida.close();
@@ -68,5 +72,30 @@ public class FaltaDAO {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void lerArquivo(AlunoDAO alunoDAO, TurmaDAO turmaDAO, DisciplinaDAO disciplinaDAO){
+        
+        FileReader fileR;
+        BufferedReader buff;
+        try {        
+            fileR = new FileReader("Faltas.txt");
+            buff = new BufferedReader(fileR);
+            while(buff.ready()){
+                Falta falta = new Falta();
+                falta.setNumFaltas(Integer.parseInt(buff.readLine()));
+                falta.setAluno(alunoDAO.buscaAluno(Integer.parseInt(buff.readLine())));
+                falta.setTurma(turmaDAO.buscaTurma(disciplinaDAO.buscaDisciplina(buff.readLine())
+                        , Integer.parseInt(buff.readLine())));
+
+                this.adicionar(falta);
+            }
+            buff.close();
+            fileR.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }            
     }
 }
