@@ -21,6 +21,12 @@ public class Falta implements Comparable<Falta>{
     public Integer getNumFaltas (){
         return this.numFaltas;
     }
+    public Aluno getAluno(){
+        return this.aluno;
+    }
+    public Turma getTurma(){
+        return this.turma;
+    }
     /*um professor pode adicionar/modificar o n de faltas de um aluno, desde
     que não seja negativo*/
     public void setNumFaltas (Integer numFaltas){

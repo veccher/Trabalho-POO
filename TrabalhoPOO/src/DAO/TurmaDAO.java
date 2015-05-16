@@ -6,9 +6,13 @@
 
 package DAO;
 
+import Pojo.Aluno;
 import Pojo.Professor;
 import Pojo.Disciplina;
 import Pojo.Turma;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -44,6 +48,31 @@ public class TurmaDAO {
     public ArrayList<Turma> getListaTurma(){
         return listaTurma;
    }
-
+    public void escreverArquivo(){
+       
+        try {
+        
+            FileWriter fw = new FileWriter("Turmas.txt",false);
+            PrintWriter saida = new PrintWriter(fw,true);
+            for(Turma turma : this.listaTurma){
+                saida.println(turma.getIdTurma());
+                saida.println(turma.getAno());
+                saida.println(turma.getPeriodo());
+                saida.println(turma.getLocal());
+                saida.println(turma.getHorario());
+                saida.println(turma.getNumVagas());
+                saida.println(turma.getProfessor().getCpf());
+                saida.println(turma.getDisciplina().getNome());
+                saida.println(turma.getListaAlunos().size());
+                for (Aluno aluno: turma.getListaAlunos()){
+                    saida.println(aluno.getCpf());
+                }
+            }    
+            saida.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
    
 }

@@ -9,6 +9,9 @@ package DAO;
 import Pojo.Aluno;
 import Pojo.Atividade;
 import Pojo.Nota;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -45,7 +48,27 @@ public class NotaDAO {
     public ArrayList<Nota> getListaNota(){
         return this.listaNota;
     }
-
+    public void escreverArquivo(){
+       
+        try {
+        
+            FileWriter fw = new FileWriter("Notas.txt",false);
+            PrintWriter saida = new PrintWriter(fw,true);
+            for(Nota nota : this.listaNota){
+                saida.println(nota.getNota());
+                saida.println(nota.getAluno().getCpf());
+                saida.println(nota.getAluno().getCpf());
+                saida.println(nota.getAtividade().getNome());
+                saida.println(nota.getAtividade().getTurma().getIdTurma());
+                saida.println(nota.getAtividade().getTurma().getDisciplina().getNome());
+            }    
+            
+            saida.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     
 }

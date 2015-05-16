@@ -8,6 +8,9 @@ package DAO;
 import Pojo.Atividade;
 import Pojo.Disciplina;
 import Pojo.Turma;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -39,6 +42,27 @@ public class AtividadeDAO {
         
         return null;
         
+    }
+    public void escreverArquivo(){
+       
+        try {
+        
+            FileWriter fw = new FileWriter("Atividades.txt",false);
+            PrintWriter saida = new PrintWriter(fw,true);
+            for(Atividade atividade : this.listaAtividade){
+                saida.println(atividade.getNome());
+                saida.println(atividade.getTipo());
+                saida.println(atividade.getData());
+                saida.println(atividade.getPeso());
+                saida.println(atividade.getTurma().getIdTurma());
+                saida.println(atividade.getTurma().getDisciplina().getNome());
+            }    
+            
+            saida.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public ArrayList<Atividade> getListaAtividade(){
         return this.listaAtividade;

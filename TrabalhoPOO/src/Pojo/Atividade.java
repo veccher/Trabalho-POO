@@ -27,6 +27,15 @@ public class Atividade implements Comparable<Atividade>{
     public String getNome(){
         return this.nome;
     }
+    public String getTipo(){
+        return this.tipo;
+    }
+    public Date getData(){
+        return this.data;
+    }
+    public Turma getTurma(){
+        return this.turma;
+    }
     /*o construtor simplesmente inicializa as variaveis, e faz o chec para
     garantir que o valor da atividade não seja negativo.*/
     public Atividade (String nome,String tipo, Date data, Float peso,Turma turma){

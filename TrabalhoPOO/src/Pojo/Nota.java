@@ -30,6 +30,12 @@ public class Nota implements Comparable<Nota>{
     public Float getNota(){
         return this.nota;
     }
+    public Aluno getAluno(){
+        return this.aluno;
+    }
+    public Atividade getAtividade(){
+        return this.atividade;
+    }
     public void setNota(Float novaNota){
         if (novaNota>=0 && novaNota<=10){
             this.nota=novaNota;

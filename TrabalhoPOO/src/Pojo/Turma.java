@@ -69,8 +69,26 @@ public class Turma implements Comparable<Turma> {
         listaAtividades=new ArrayList<Atividade>();
         listaDeFaltas=new ArrayList<Falta>();
     }
+    public Integer getIdTurma(){
+        return this.idTurma;
+    }
     public Integer getAno(){
         return this.ano;
+    }
+    public Integer getPeriodo(){
+        return this.periodo;
+    }
+    public String getLocal(){
+        return this.local;
+    }
+    public String getHorario(){
+        return this.horario;
+    }
+    public Integer getNumVagas(){
+        return this.numVagas;
+    }
+    public Professor getProfessor(){
+        return this.professor;
     }
     public Disciplina getDisciplina(){
         return this.disciplina;
