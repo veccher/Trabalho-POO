@@ -119,12 +119,19 @@ public class Menu {
         NotaDAO notaDAO = new NotaDAO();
         FaltaDAO faltaDAO = new FaltaDAO();
         AtividadeDAO atividadeDAO = new AtividadeDAO();
-        
+        alunoDAO.lerArquivo();
+        professorDAO.lerArquivo();
+        disciplinaDAO.lerArquivo();
+        turmaDAO.lerArquivo(professorDAO, disciplinaDAO, alunoDAO);
+        atividadeDAO.lerArquivo(turmaDAO, disciplinaDAO);
+        notaDAO.lerArquivo(alunoDAO, atividadeDAO, turmaDAO, disciplinaDAO);
+        faltaDAO.lerArquivo(alunoDAO, turmaDAO, disciplinaDAO);
         
         
         
         Menu menu = new Menu();
         Scanner scanner = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);
         byte opcao;
         
         do{
@@ -133,9 +140,16 @@ public class Menu {
                 switch(opcao){
                 case 1:
                     menuAdmin.menuOpcao(professorDAO, alunoDAO,turmaDAO, disciplinaDAO);
+                    professorDAO.escreverArquivo();
+                    alunoDAO.escreverArquivo();
+                    disciplinaDAO.escreverArquivo();
+                    turmaDAO.escreverArquivo();
                     break;
                 case 2:
-                    menuProfessor.menuOpcao(professorDAO,disciplinaDAO,alunoDAO);
+                    menuProfessor.menuOpcao(professorDAO,disciplinaDAO,alunoDAO, atividadeDAO, notaDAO, faltaDAO);
+                    atividadeDAO.escreverArquivo();
+                    notaDAO.escreverArquivo();
+                    faltaDAO.escreverArquivo();
                     break;
                 case 3:
                     menuAluno.menuOpcao(alunoDAO, disciplinaDAO, turmaDAO, notaDAO, faltaDAO);
@@ -153,13 +167,14 @@ public class Menu {
                         System.out.println("Digite o indice da Disciplina que deseja"
                                           +"(o indice se encontra a esquerda do"
                                           +"nome da disciplina");
-                        int index=parseInt(scanner.nextLine());
+                        int index;
+                        index=Integer.parseInt(scanner2.nextLine());
                         if (index>cont ||index<1){
                             System.out.println("indice invalido, tente novamente");
                             return;
                         }
                         numTurmas=disciplinaDAO.getListaDisciplina().get(index-1).getNumTurmas();
-                        System.out.println(numTurmas +" turmas ja foram oferecidas dessa disciplina");
+                        System.out.println(numTurmas +" turmas ja foram oferecidas dessa disciplina");                       
                         break;
                     }
                     break;
@@ -176,7 +191,7 @@ public class Menu {
                         System.out.println("Digite o indice do professor que deseja"
                                           +"(o indice se encontra a esquerda do"
                                           +"nome do professor");
-                        int idx=parseInt(scanner.nextLine());
+                        int idx=Integer.parseInt(scanner2.nextLine());
                         if (idx>i ||idx<1){
                             System.out.println("indice invalido, tente novamente");
                             return;

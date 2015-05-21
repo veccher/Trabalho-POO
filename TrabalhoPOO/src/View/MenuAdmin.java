@@ -69,6 +69,7 @@ public class MenuAdmin {
             Turma novo = new Turma(ano, periodo, local, horario, numVagas,
                                    professor, disciplina);
             turmaDAO.adicionar(novo);
+            professor.tutoraTurma(novo);
             matriculaAluno(alunoDAO,novo);
                 
          }  
@@ -157,30 +158,38 @@ public class MenuAdmin {
                     System.out.println("Entre com o nome da Disciplina da Turma:");
                     nome = scanner.nextLine();
                     disciplina = disciplinaDAO.buscaDisciplina(nome);
+                    if(disciplina!=null&&professor!=null){
+                        System.out.println();
+                        System.out.println("Entre com o ano da Turma:");
+                        ano = Integer.parseInt(scanner.nextLine());
                     
-                    System.out.println();
-                    System.out.println("Entre com o ano da Turma:");
-                    ano = Integer.parseInt(scanner.nextLine());
+                        System.out.println();
+                        System.out.println("Entre com o periodo da Turma:");
+                        periodo = Integer.parseInt(scanner.nextLine());
                     
-                    System.out.println();
-                    System.out.println("Entre com o periodo da Turma:");
-                    periodo = Integer.parseInt(scanner.nextLine());
+                        System.out.println();
+                        System.out.println("Entre com o local da Turma:");
+                        local = scanner.nextLine();
                     
-                    System.out.println();
-                    System.out.println("Entre com o local da Turma:");
-                    local = scanner.nextLine();
+                        System.out.println();
+                        System.out.println("Entre com o horario da Turma:");
+                        horario = scanner.nextLine();
                     
-                    System.out.println();
-                    System.out.println("Entre com o horario da Turma:");
-                    horario = scanner.nextLine();
+                        System.out.println();
+                        System.out.println("Entre com o numero de vagas da Turma:");
+                        numVagas = Integer.parseInt(scanner.nextLine());
                     
-                    System.out.println();
-                    System.out.println("Entre com o numero de vagas da Turma:");
-                    numVagas = Integer.parseInt(scanner.nextLine());
-                    
-                    this.cadastroTurma(turmaDAO, ano, periodo, local, horario,
-                            numVagas, professor, disciplina,alunoDAO);
-                 
+                        this.cadastroTurma(turmaDAO, ano, periodo, local, horario,
+                            numVagas, professor, disciplina, alunoDAO);
+                    }else{
+                        if(disciplina==null){
+                            System.out.println("Disciplina nao encontrada, turma nao sera cadastrada");
+                        }
+                        if(professor==null){
+                            System.out.println("Professor nao encontrado, turma nao sera cadastrada");
+                        }
+                            
+                    }
                     break;
                 case 4:
                     System.out.println();

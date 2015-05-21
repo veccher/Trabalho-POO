@@ -1,0 +1,8 @@
+fisica
+newton
+75
+1
+poo
+java
+90
+1
