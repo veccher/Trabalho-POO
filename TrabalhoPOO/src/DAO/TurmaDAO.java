@@ -96,6 +96,7 @@ public class TurmaDAO {
                     turma.matriculaAluno(alunoDAO.buscaAluno(Integer.parseInt(buff.readLine())));             
                     
                 }                
+                turma.getProfessor().tutoraTurma(turma);
                 this.adicionar(turma);
                 
                 
