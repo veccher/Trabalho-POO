@@ -49,7 +49,13 @@ public class Menu {
         NotaDAO notaDAO = new NotaDAO();
         FaltaDAO faltaDAO = new FaltaDAO();
         AtividadeDAO atividadeDAO = new AtividadeDAO();
-        
+        alunoDAO.lerArquivo();
+        professorDAO.lerArquivo();
+        disciplinaDAO.lerArquivo();
+        turmaDAO.lerArquivo(professorDAO, disciplinaDAO, alunoDAO);
+        atividadeDAO.lerArquivo(turmaDAO, disciplinaDAO);
+        notaDAO.lerArquivo(alunoDAO, atividadeDAO, turmaDAO, disciplinaDAO);
+        faltaDAO.lerArquivo(alunoDAO, turmaDAO, disciplinaDAO);
         
         
         
@@ -63,9 +69,16 @@ public class Menu {
                 switch(opcao){
                 case 1:
                     menuAdmin.menuOpcao(professorDAO, alunoDAO,turmaDAO, disciplinaDAO);
+                    professorDAO.escreverArquivo();
+                    alunoDAO.escreverArquivo();
+                    disciplinaDAO.escreverArquivo();
+                    turmaDAO.escreverArquivo();
                     break;
                 case 2:
-                    menuProfessor.menuOpcao(professorDAO,disciplinaDAO,alunoDAO);
+                    menuProfessor.menuOpcao(professorDAO,disciplinaDAO,alunoDAO, atividadeDAO, notaDAO, faltaDAO);
+                    atividadeDAO.escreverArquivo();
+                    notaDAO.escreverArquivo();
+                    faltaDAO.escreverArquivo();
                     break;
                 case 3:
                     menuAluno.menuOpcao(alunoDAO, disciplinaDAO, turmaDAO, notaDAO, faltaDAO);
