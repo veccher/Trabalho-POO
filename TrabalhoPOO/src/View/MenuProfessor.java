@@ -112,7 +112,6 @@ public class MenuProfessor {
          do{
              System.out.println("Digite o nome da atividade que deseja lançar notas");
              String nome=scanner.nextLine();
-             //atividade=turma.getListaAtividades().buscaAtividade(nome);
              for(Atividade aux : turma.getListaAtividades()){
                  if(aux.getNome().equals(nome))
                      atividade=aux;
