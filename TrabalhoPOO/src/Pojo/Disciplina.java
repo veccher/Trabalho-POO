@@ -35,12 +35,14 @@ public class Disciplina implements Comparable<Disciplina> {
     public Disciplina (){
         
     }
+    //construtor padrão, ao criar uma nova disciplina, o numero de turmas dela é 0
     public Disciplina (String nome,String ementa,Integer chs){
         this.nome=nome;
         this.ementa=ementa;
         this.chs=chs;
         this.numTurmas=0;
     }
+    //construtor exclusivo para o uso ao ler do arquivo em DAO
     public Disciplina (String nome,String ementa,Integer chs,Integer numTurmas){
         this.nome=nome;
         this.ementa=ementa;

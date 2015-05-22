@@ -26,19 +26,19 @@ import java.util.List;
  */
 public class FaltaDAO {
     private ArrayList<Falta> listaFalta = new ArrayList<Falta>();
-    
+    //adiciona uma falta na lista e ordena
     public void adicionar(Falta falta){
         listaFalta.add(falta);
         Collections.sort(listaFalta);
     }
-    
+    //exclui uma falta da lista
     public boolean excluiFalta(Aluno aluno, Turma turma){
         
         Falta aux = new Falta(new Integer(0),aluno,turma);
         return this.listaFalta.remove(aux);
         
    }
-    
+    //busca uma falta da lista
     public Falta buscaFalta(Aluno aluno, Turma turma){
         Falta aux = new Falta(new Integer(0),aluno,turma);
         
@@ -53,6 +53,10 @@ public class FaltaDAO {
     public ArrayList<Falta> getListaFalta(){
         return this.listaFalta;
     }
+    /*escreve no arquivo todas os objetos da lista na ordem: numero de faltas,
+    cpf do aluno (serve para buscar o aluno posteriormente em alunoDAO), nome
+    da Disciplina e id da turma (usados posteriormente para buscar a turma em
+    turmaDAO*/
     public void escreverArquivo(){
        
         try {
@@ -73,7 +77,8 @@ public class FaltaDAO {
             e.printStackTrace();
         }
     }
-    
+    /*le do arquivo as informações para inicialização do programa com base nas
+    especificações da função de escrita*/
     public void lerArquivo(AlunoDAO alunoDAO, TurmaDAO turmaDAO, DisciplinaDAO disciplinaDAO){
         
         FileReader fileR;

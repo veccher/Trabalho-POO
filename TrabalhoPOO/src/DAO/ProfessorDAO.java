@@ -22,17 +22,17 @@ import java.util.Collections;
  */
 public class ProfessorDAO {
      private ArrayList<Professor> listaProfessor = new ArrayList<Professor>();
-    
+    //adiciona um professor na lista e ordena
     public void adicionar(Professor professor){
         listaProfessor.add(professor);
         Collections.sort(listaProfessor);
     }
-    
+    //exclui um professor da lista
     public boolean excluirProfessor(Integer cpf){
         Professor aux = this.buscarProfessor(cpf);
         return this.listaProfessor.remove(aux);
         
-   }
+   }//busca um professor na lista
     public Professor buscarProfessor(Integer cpf){
         Professor aux = new Professor();
         aux.setCpf(cpf);
@@ -43,6 +43,10 @@ public class ProfessorDAO {
         }
         return null;
     }
+    /*escreve no arquivo "Professores.txt" todas as informações contidas na lista
+    na seguinte ordem: nome, cpf, departamento e numero de disciplinas, a variavel
+    turmas tutoradas é automaticamente preenchida posteriormente ao criar novas
+    turmas nas outras funções*/
     public void escreverArquivo(){
        
         try {
@@ -62,6 +66,9 @@ public class ProfessorDAO {
             e.printStackTrace();
         }
     }
+    /*le do arquivo as informações com base nas especificações da função de escrita,
+    a função de leitura usa um construtor especial por causa da variavel do
+    numero de turmas ja lecionadas por ele*/
     public void lerArquivo(){
         
         FileReader fileR;

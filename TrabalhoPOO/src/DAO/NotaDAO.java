@@ -24,19 +24,19 @@ import java.util.Collections;
  */
 public class NotaDAO {
     private ArrayList<Nota> listaNota = new ArrayList<Nota>();
-    
+    //adiciona uma nota na lista e ordena
     public void adicionar(Nota nota){
         listaNota.add(nota);
         Collections.sort(listaNota);
     }
-    
+    //exclui uma nota da lista
     public boolean excluiNota(Aluno aluno, Atividade atividade){
         
         Nota aux = new Nota(new Float(0),aluno,atividade);
         return this.listaNota.remove(aux);
         
    }
-    
+    //busca uma nota na lista
     public Nota buscaNota(Aluno aluno, Atividade atividade){
         Nota aux = new Nota(new Float(0),aluno,atividade);
         
@@ -51,6 +51,10 @@ public class NotaDAO {
     public ArrayList<Nota> getListaNota(){
         return this.listaNota;
     }
+    /*escreve no arquivo "Notas.txt" todos os objetos da lista na seguinte ordem:
+    nota,cpf(usado para buscar o aluno posteriormente em AlunoDAO, nome da Atividade,
+    nome da disciplina, e id da turma (usados posteriormente para encontrar a 
+    atividade que a nota se refere*/
     public void escreverArquivo(){
        
         try {
@@ -72,7 +76,7 @@ public class NotaDAO {
             e.printStackTrace();
         }
     }
-    
+    /*le as informações do arquivo com base nas especificações da função de escrita*/
     public void lerArquivo(AlunoDAO alunoDAO, AtividadeDAO atividadeDAO, TurmaDAO turmaDAO, DisciplinaDAO disciplinaDAO){
         
         FileReader fileR;

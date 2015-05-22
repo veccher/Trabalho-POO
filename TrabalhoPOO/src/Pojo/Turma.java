@@ -37,8 +37,10 @@ public class Turma implements Comparable<Turma> {
         this.idTurma=idTurma;
         this.disciplina=disciplina;
     }
-    public Turma (Integer ano,Integer periodo, String local,
-                  String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+    /*construtor padrão, o id da turma é obtido automaticamente a partir do
+    numero de turmas ja criados daquela disciplina*/
+    public Turma (Integer ano,Integer periodo, String local, String horario, Integer numVagas, Professor professor, 
+                  Disciplina disciplina){
         disciplina.incrementaNumTurmas();
         this.idTurma=disciplina.getNumTurmas();
         this.ano=ano;
@@ -53,6 +55,8 @@ public class Turma implements Comparable<Turma> {
         listaAtividades=new ArrayList<Atividade>();
         listaDeFaltas=new ArrayList<Falta>();
     }
+    /*Construtor exclusivo para o metodo de leitura em DAO, o id Turma aqui
+    é passado como argumento, diferente do construtor padrão*/
     public Turma (Integer idTurma,Integer ano,Integer periodo, String local,
                   String horario, Integer numVagas, Professor professor, Disciplina disciplina){
         this.idTurma=idTurma;
@@ -120,7 +124,7 @@ public class Turma implements Comparable<Turma> {
         return (this.idTurma.equals(turma.idTurma) && this.disciplina.equals
                (turma.disciplina));
     }
-    
+    /*adiciona um aluno na turma*/
     public boolean matriculaAluno (Aluno aluno){
         if (aluno==null){
             return false;
