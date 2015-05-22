@@ -28,11 +28,13 @@ public class Professor extends Pessoa implements Comparable<Professor>{
         super (nome,cpf);
         this.departamento=departamento;
         this.numeroDisciplinas=0;
+        this.turmasTutoradas= new ArrayList<Turma>();
     }
     public Professor (String nome,Integer cpf,String departamento,Integer numDisciplinas){
         super (nome,cpf);
         this.departamento=departamento;
         this.numeroDisciplinas=numDisciplinas;
+        this.turmasTutoradas= new ArrayList<Turma>();
     }
     //retorna o numero de disciplinas ja lecionadas pelo professor
     public Integer getNumeroDisciplinas(){

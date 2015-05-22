@@ -4,5 +4,5 @@ newton
 1
 poo
 java
-90
+75
 1

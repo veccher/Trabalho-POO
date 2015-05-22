@@ -68,8 +68,9 @@ public class MenuProfessor {
              Integer idTurma=parseInt(scanner.nextLine());
              for (Turma t : professor.getTurmasTutoradas()){
                  Turma aux=new Turma(idTurma, disciplina);
-                 if (aux.equals(t));
-                 turma=t;
+                 if (aux.equals(t)){
+                  turma=t;
+                 }
              }
          }while(turma==null);
          return turma;
@@ -94,9 +95,9 @@ public class MenuProfessor {
          System.out.println("Digite o tipo da atividade");
          String tipo=scanner.nextLine();
          System.out.println("digite o dia de entrega da atividade");
-         Integer dia=parseInt(scanner.nextLine());
+         Integer dia=Integer.parseInt(scanner.nextLine());
          System.out.println("digite o mes de entrega da atividade");
-         Integer mes=parseInt(scanner.nextLine());
+         Integer mes=Integer.parseInt(scanner.nextLine());
          Date data=new Date(turma.getAno(),mes,dia);
          System.out.println("Digite o valor do peso avaliativo da atividade");
          Float peso=scanner.nextFloat();
@@ -152,7 +153,7 @@ public class MenuProfessor {
          Scanner scanner=new Scanner(System.in);
          Integer res;
          while(true){
-             res=parseInt(scanner.nextLine());
+             res=Integer.parseInt(scanner.nextLine());
              if(res>4 || res<1)
                  System.out.println("numero invalido");
              else
@@ -164,8 +165,9 @@ public class MenuProfessor {
              AlunoDAO alunoDAO, AtividadeDAO atividadeDAO, NotaDAO notaDAO, FaltaDAO
                      faltaDAO){
          Professor professor=login(professorDAO);
-         Integer opcao=getAcao();
+         Integer opcao;
          do{
+            opcao=getAcao();
             switch (opcao){
                 case 1: adicionaAtividade(professor,disciplinaDAO, atividadeDAO);break;
                 case 2: lancaNotas(professor, disciplinaDAO,alunoDAO,notaDAO);break;

@@ -39,6 +39,7 @@ public class Turma implements Comparable<Turma> {
     }
     public Turma (Integer ano,Integer periodo, String local,
                   String horario, Integer numVagas, Professor professor, Disciplina disciplina){
+        disciplina.incrementaNumTurmas();
         this.idTurma=disciplina.getNumTurmas();
         this.ano=ano;
         this.periodo=periodo;
@@ -48,7 +49,6 @@ public class Turma implements Comparable<Turma> {
         this.professor=professor;
         this.disciplina=disciplina;
         professor.incrementaNumDisciplinas();
-        disciplina.incrementaNumTurmas();
         listaAluno=new ArrayList<Aluno>();
         listaAtividades=new ArrayList<Atividade>();
         listaDeFaltas=new ArrayList<Falta>();
@@ -128,6 +128,7 @@ public class Turma implements Comparable<Turma> {
         this.listaAluno.add(aluno);
         return true;
     }
+    @Override
     public int compareTo(Turma turma){
         if (!this.disciplina.equals(turma.disciplina)){
             return (this.disciplina.compareTo(turma.disciplina));
@@ -135,7 +136,4 @@ public class Turma implements Comparable<Turma> {
         return (this.idTurma.compareTo(this.idTurma));    
     }
 
-    /*public Object getDisciplina() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
 }

@@ -64,7 +64,7 @@ public class MenuAluno {
         Turma turma=null;
         ArrayList<Turma> listaTurma = turmaDAO.getListaTurma();
         for(Turma aux : listaTurma){
-            if(aux.getDisciplina().equals(disciplina) && aux.getListaAlunos().contains(aux)==true){
+            if(aux.getDisciplina().equals(disciplina) && aux.getListaAlunos().contains(aluno)==true){
                 turma = aux;
             }
         }
@@ -101,9 +101,10 @@ public class MenuAluno {
             if (falta==null){
                 System.out.println("Não foi encontrado o numero de faltas");
             }
-            float relacaoFaltas = falta.getNumFaltas()/disciplina.getChs();//% de faltas
-            System.out.println("Numero de Faltas:"+falta.getNumFaltas());    
-            if(notaFinal>=6.0&&relacaoFaltas>=0.25){
+            
+            float relacaoFaltas = (falta.getNumFaltas()*100/disciplina.getChs());//% de faltas
+            System.out.println("Numero de Faltas:"+falta.getNumFaltas()+" relacao:"+relacaoFaltas);    
+            if(notaFinal>=6.0&&(relacaoFaltas<=25)){
                 System.out.println("Situação : Aprovado!");
             }else{
                 System.out.println("Situação : Reprovado!");

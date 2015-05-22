@@ -37,7 +37,7 @@ public class Menu {
             somaPesos+=atividade.getPeso();
             for (Nota nota:atividade.getListaNota()){
                 if (nota.getAluno().equals(aluno)){
-                    somaNotas+=nota.getNota();
+                    somaNotas+=nota.getNota()*atividade.getPeso();
                 }
             }
         }
@@ -67,13 +67,13 @@ public class Menu {
     public static boolean consultaTurmas(DisciplinaDAO disciplinaDAO,TurmaDAO turmaDAO,
                                     AlunoDAO alunoDAO){
         Disciplina disciplina;
-        ArrayList<Turma> turmas=null;
+        ArrayList<Turma> turmas = new ArrayList<Turma>();
         Scanner scanner=new Scanner(System.in);
         if (disciplinaDAO==null || turmaDAO==null || alunoDAO==null){
             System.out.println("não há informações suficientes no banco de dados para consultas");
             return false;
         }//o while vai buscar as turmas da disciplina e ano digitado
-        while (turmas==null){
+        while (turmas.isEmpty()){
             Integer ano;
             String nome;
             System.out.println("Lista de disciplinas");
@@ -83,7 +83,7 @@ public class Menu {
             System.out.println("Digite o nome da disciplina");
             nome=scanner.nextLine();
             System.out.println("Digite o ano que deseja consultar");
-            ano=parseInt(scanner.nextLine());
+            ano=Integer.parseInt(scanner.nextLine());
             disciplina=disciplinaDAO.buscaDisciplina(nome);
             if (disciplina==null){
                 System.out.println("disciplina não encontrada, tente novamente");
@@ -93,15 +93,15 @@ public class Menu {
                     turmas.add(auxTurma);
                 }
             }
-            if (turmas.isEmpty()==true){
+            if (turmas.isEmpty()){
                 System.out.println("turmas não encontradas, tente novamente");
             }
         }
         for (Turma auxTurma:turmas){
             System.out.println("Turma: "+auxTurma.getIdTurma());
             for (Aluno auxAluno:auxTurma.getListaAlunos()){
-                System.out.println("aluno: "+auxAluno.getNome()+"nota: "
-                                   + getNota(auxAluno,auxTurma)+"faltas: "
+                System.out.println("aluno: "+auxAluno.getNome()+"\n"+"nota: "
+                                   + getNota(auxAluno,auxTurma)+" faltas: "
                                    + getFaltasAluno(auxAluno, auxTurma));
                 
             }

@@ -55,7 +55,7 @@ public class MenuAdmin {
             }else{
                 turma.matriculaAluno(aluno);
             }
-        }while(cpf>=0);
+        }while(cpf>=0&&(turma.getListaAlunos().size()<turma.getNumVagas()));
         
     }
     public void  cadastroTurma(TurmaDAO turmaDAO, Integer ano,Integer periodo, String local,
@@ -110,13 +110,13 @@ public class MenuAdmin {
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
         int opcao;
-
+        String nome,departamento , local ,horario, ementa; 
+        Integer cpf, ano, periodo, numVagas, chs ;
         do{
             imprimeMenu();
             Aluno novo = new Aluno();
             opcao = scanner2.nextInt();
-            String nome=null,departamento =null, local = null,horario= null, ementa =null; 
-            Integer cpf=null, ano=null, periodo=null, numVagas=null, chs=null ;
+            
             switch(opcao){
                 case 1:
                     
