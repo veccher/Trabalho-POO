@@ -20,21 +20,22 @@ import java.util.Collections;
  *
  * @author Vitor
  */
+
 public class AlunoDAO {
     private ArrayList<Aluno> listaAluno = new ArrayList<Aluno>();
-    
+    //adiciona e ordena um aluno na lista
     public void adicionar(Aluno aluno){
         listaAluno.add(aluno);
         Collections.sort(listaAluno);
     }
-    
+    //exclui um aluno da lista
     public boolean excluiAluno(Integer cpf){
         Aluno aux=this.buscaAluno(cpf);
         return this.listaAluno.remove(aux);
         
         
    }
-  
+    //busca um aluno baseado no cpf (parametro usado no equals)
     public Aluno buscaAluno(Integer cpf){
         Aluno aux = new Aluno();
         aux.setCpf(cpf);
@@ -45,9 +46,12 @@ public class AlunoDAO {
         }
         return null;
     }
+    //retorna a lista de alunos
     public ArrayList<Aluno> getListaAluno(){
         return this.listaAluno;
     }
+    /*salva todos os alunos da lista em um arquivo "Alunos.txt" na seguinte
+    ordem:nome->cpf->*volta pro nome (do proximo aluno)*como em um ciclo*/
     public void escreverArquivo(){
        
         try {
@@ -65,6 +69,8 @@ public class AlunoDAO {
             e.printStackTrace();
         }
     }
+    /*le o arquivo alunos.txt para carregar as informações ao inicio do programa,
+    a leitura é feita considerando a ordem e definições feitas na escrita*/
     public void lerArquivo(){
         
         FileReader fileR;

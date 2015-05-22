@@ -20,18 +20,19 @@ import java.util.Collections;
  */
 public class DisciplinaDAO {
      private ArrayList<Disciplina> listaDisciplina = new ArrayList<Disciplina>();
-    
+    //adiciona uma disciplina na lista e ordena
     public void adicionar(Disciplina disciplina){
         listaDisciplina.add(disciplina);
         Collections.sort(listaDisciplina);
     }
-    
+    //exclui uma disciplina a partir do nome
     public boolean excluiDisciplina(String nomeDel){
         Disciplina aux = new Disciplina();
         aux.setNome(nomeDel);
         return this.listaDisciplina.remove(aux);
         
    }
+    //busca uma disciplina a partir do nome
     public Disciplina buscaDisciplina(String nome){
         Disciplina aux = new Disciplina();
         aux.setNome(nome);
@@ -42,6 +43,8 @@ public class DisciplinaDAO {
         }
         return null;
     }
+    /*escreve as informações da lista em um arquivo "Disciplinas.txt com a 
+    seguinte ordem: nome, ementa, carga horaria, e numero de turmas.*/
     public void escreverArquivo(){
        
         try {
@@ -61,6 +64,8 @@ public class DisciplinaDAO {
             e.printStackTrace();
         }
     }
+    /*le um arquivo para carregar os dados na inicialização, baseada na ordem
+    da especificação do algoritmo de escrita*/
     public void lerArquivo(){
         
         FileReader fileR;

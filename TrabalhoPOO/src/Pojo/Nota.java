@@ -11,9 +11,9 @@ package Pojo;
  */
 
 public class Nota implements Comparable<Nota>{
-    private Float nota;
-    private Aluno aluno;
-    private Atividade atividade;
+    private Float nota;//nota (valor numerico)
+    private Aluno aluno;//aluno que se refere a nota
+    private Atividade atividade;//atividade que se refere a nota
     
    
     public Nota(){

@@ -12,13 +12,13 @@ package Pojo;
  */
 public class Aluno extends Pessoa implements Comparable <Aluno> {
    public Aluno(){
-       super();
-       
+       super();    
    }
+   //construtor com nome e cpf
    public Aluno (String nome,Integer cpf){
         super (nome,cpf);
     }
-   
+   //definição do tostring
    public String ToString(){
        return "Nome:"+this.getNome()+"\n"+"Cpf:"+this.getCpf() ;
    }

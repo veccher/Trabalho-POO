@@ -25,17 +25,18 @@ import java.util.Collections;
  */
 public class TurmaDAO {
     private ArrayList<Turma> listaTurma = new ArrayList<Turma>();
-    
+    //adiciona uma turma a lista e ordena
     public void adicionar(Turma turma){
         listaTurma.add(turma);
         Collections.sort(listaTurma);
     }
-    
+    //exclui uma turma da lista
     public boolean excluiTurma(Disciplina disciplina,Integer idTurma){
         Turma aux = new Turma(idTurma,disciplina);
         return this.listaTurma.remove(aux);
         
    }
+    //busca uma turma na lista
     public Turma buscaTurma(Disciplina disciplina,Integer idTurma){
         Turma aux = new Turma(idTurma, disciplina);
         
@@ -51,6 +52,7 @@ public class TurmaDAO {
     public ArrayList<Turma> getListaTurma(){
         return listaTurma;
    }
+    /*escreve todos os objetos no arquivo Turmas.txt*/
     public void escreverArquivo(){
        
         try {
@@ -77,7 +79,9 @@ public class TurmaDAO {
             e.printStackTrace();
         }
     }
-   
+    /*le todas as informações do arquivo conforme especificações da função de
+    escrita, um construtor diferente é usado para manutenção da variavel
+    referente ao numero de turmas ja criadas da disciplina*/
     public void lerArquivo(ProfessorDAO professorDAO, DisciplinaDAO disciplinaDAO, AlunoDAO alunoDAO){
         
         FileReader fileR;

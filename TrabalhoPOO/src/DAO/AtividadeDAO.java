@@ -27,17 +27,19 @@ import java.util.Collections;
  */
 public class AtividadeDAO {
     private ArrayList<Atividade> listaAtividade = new ArrayList<Atividade>();
-    
+    //adiciona uma atividade na lista
     public void adicionar (Atividade atividade){
         listaAtividade.add(atividade);
         Collections.sort(listaAtividade);
     }
+    //exclui uma atividade da lista
     public boolean excluiAtividade (String nome){
         {
         Atividade aux = new Atividade(nome);
         return this.listaAtividade.remove(aux);
         }
     }
+    //busca uma atividade na lista
     public Atividade buscaAtividade(String nome, Turma turma){
         Atividade aux = new Atividade();
         aux.setTurma(turma);
@@ -52,6 +54,10 @@ public class AtividadeDAO {
         return null;
         
     }
+    /*escreve no arquivo "Atividades.txt" todas as informações contidas na lista,
+    a ordem é: nome, tipo, data, peso, disciplina, e turma, nesse caso salvamos
+    apenas o nome da disciplina e id da turma, e depois buscamos a atividade
+    e a turma com base nessas informações*/
     public void escreverArquivo(){
        
         try {
@@ -75,7 +81,7 @@ public class AtividadeDAO {
             e.printStackTrace();
         }
     }
-    
+    /*le as informações do arquivo com base nas especificações da função de escrita*/
     public void lerArquivo(TurmaDAO turmaDAO, DisciplinaDAO disciplinaDAO) throws ParseException{
         
         FileReader fileR;
